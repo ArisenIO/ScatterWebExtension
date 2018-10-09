@@ -8,9 +8,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const nodeExternals = require('webpack-node-externals')
 const Dotenv = require('dotenv-webpack');
 
-console.log(process.env.SCATTER_ENV);
+console.log(process.env.ARKID_ENV);
 
-const production = process.env.SCATTER_ENV === 'production';
+const production = process.env.ARKID_ENV === 'production';
 const vueAlias = `vue/dist/vue${production ? '.min' : ''}.js`;
 
 const devPlugins = [
@@ -21,13 +21,13 @@ const devPlugins = [
     })
 ];
 const prodPlugins = devPlugins.concat([
-    new ZipPlugin({ path: '../', filename: 'scatter.zip' }),
+    new ZipPlugin({ path: '../', filename: 'arkid.zip' }),
     new UglifyJsPlugin(),
 ])
 
 const productionPlugins = !production ? devPlugins : prodPlugins;
 
-const runningTests = process.env.SCATTER_ENV === 'testing';
+const runningTests = process.env.ARKID_ENV === 'testing';
 const externals = runningTests ? [nodeExternals()] : [];
 
 function replaceSuffixes(file){
@@ -41,7 +41,7 @@ const filesToPack = [
   'content.js',
   'inject.js',
   'prompt.js',
-  'scatterdapp.js',
+  'arkiddapp.js',
   'styles.scss',
 ];
 const entry = filesToPack.reduce((o, file) => Object.assign(o, {[replaceSuffixes(file)]: `./src/${file}`}), {});

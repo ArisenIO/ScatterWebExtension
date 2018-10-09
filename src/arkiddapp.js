@@ -5,7 +5,7 @@ import Error from './models/errors/Error'
 import Network from './models/Network'
 import IdGenerator from './util/IdGenerator';
 import PluginRepository from './plugins/PluginRepository';
-const ecc = require('eosjs-ecc');
+const ecc = require('arisenjs-ecc');
 import {strippedHost} from './util/GenericTools'
 
 
@@ -25,7 +25,7 @@ class DanglingResolver {
     }
 }
 
-// Removing properties from exposed scatterdapp object
+// Removing properties from exposed arkiddapp object
 // Pseudo privacy
 let provider = new WeakMap();
 let stream = new WeakMap();
@@ -36,7 +36,7 @@ let currentVersion = new WeakMap();
 let requiredVersion = new WeakMap();
 
 const throwIfNoIdentity = () => {
-    if(!publicKey) throws('There is no identity with an account set on your Scatter instance.');
+    if(!publicKey) throws('There is no identity with an account set on your ArisenID instance.');
 };
 
 
@@ -72,7 +72,7 @@ const _send = (_type, _payload) => {
         // Version requirements
         if(!!requiredVersion && requiredVersion > currentVersion){
             let message = new NetworkMessage(NetworkMessageTypes.REQUEST_VERSION_UPDATE, {}, -1);
-            stream.send(message, PairingTags.SCATTER);
+            stream.send(message, PairingTags.ARKID);
             reject(Error.requiresUpgrade());
             return false;
         }
@@ -80,7 +80,7 @@ const _send = (_type, _payload) => {
         let id = IdGenerator.numeric(24);
         let message = new NetworkMessage(_type, _payload, id);
         resolvers.push(new DanglingResolver(id, resolve, reject));
-        stream.send(message, PairingTags.SCATTER);
+        stream.send(message, PairingTags.ARKID);
     });
 };
 
@@ -91,11 +91,11 @@ const setupSigProviders = context => {
 };
 
 /***
- * Scatterdapp is the object injected into the web application that
- * allows it to interact with Scatter. Without using this the web application
+ * ArkIddapp is the object injected into the web application that
+ * allows it to interact with ArkId. Without using this the web application
  * has no access to the extension.
  */
-export default class Scatterdapp {
+export default class ArkIddapp {
 
     constructor(_stream, _options){
         currentVersion = parseFloat(_options.version);
@@ -114,7 +114,7 @@ export default class Scatterdapp {
     }
 
     /***
-     * Suggests the set network to the user's Scatter.
+     * Suggests the set network to the user's ArkId.
      */
     suggestNetwork(network){
         if(!Network.fromJson(network).isValid()) throws('The provided network is invalid.');
@@ -177,7 +177,7 @@ export default class Scatterdapp {
 
     /***
      * Sets a version requirement. If the version is not met all
-     * scatter requests will fail and notify the user of the reason.
+     * arkid requests will fail and notify the user of the reason.
      * @param _version
      */
     requireVersion(_version){

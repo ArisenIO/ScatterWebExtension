@@ -10,7 +10,7 @@ import {IdentityRequiredFields} from '../models/Identity'
 Vue.use(Vuex);
 
 const state = {
-    scatter:null,
+    arkid:null,
     mnemonic:null,
 
     alerts:[],
@@ -20,14 +20,14 @@ const state = {
 };
 
 const getters = {
-    meta:state => state.scatter.meta,
-    identities:state => state.scatter.keychain.identities,
-    permissions:state => state.scatter.keychain.permissions,
-    keypairs:state => state.scatter.keychain.keypairs,
-    networks:state => state.scatter.settings.networks,
-    histories:state => state.scatter.histories,
-    autoLockInterval:state => state.scatter.settings.inactivityInterval,
-    language:state => state.scatter.settings.language,
+    meta:state => state.arkid.meta,
+    identities:state => state.arkid.keychain.identities,
+    permissions:state => state.arkid.keychain.permissions,
+    keypairs:state => state.arkid.keychain.keypairs,
+    networks:state => state.arkid.settings.networks,
+    histories:state => state.arkid.histories,
+    autoLockInterval:state => state.arkid.settings.inactivityInterval,
+    language:state => state.arkid.settings.language,
 
     // FOR PROMPTS ONLY
     identityFields:state => IdentityRequiredFields.fromJson(state.prompt.data),

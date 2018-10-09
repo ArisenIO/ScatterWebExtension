@@ -28,7 +28,7 @@
     import AlertMsg from '../models/alerts/AlertMsg'
     import IdentityService from '../services/IdentityService';
     import Mnemonic from '../util/Mnemonic'
-    import EOSKeygen from '../util/EOSKeygen'
+    import RSNKeygen from '../util/RSNKeygen'
     import StorageService from '../services/StorageService'
     import AuthenticationService from '../services/AuthenticationService'
 
@@ -41,7 +41,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
 
@@ -59,7 +59,7 @@
                     AuthenticationService.changePassword(this.currentPassword, this.newPassword, this)
             },
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
                 Actions.PUSH_ALERT,
                 Actions.SET_SEED,
                 Actions.SET_MNEMONIC,

@@ -116,14 +116,14 @@
     import * as Actions from '../store/constants';
     import {RouteNames} from '../vue/Routing'
     import Identity from '../models/Identity'
-    import Scatter from '../models/Scatter'
+    import ArkId from '../models/ArkId'
     import Account from '../models/Account'
     import KeyPair from '../models/KeyPair'
     import {LocationInformation} from '../models/Identity'
     import AlertMsg from '../models/alerts/AlertMsg'
     import IdentityService from '../services/IdentityService'
     import AccountService from '../services/AccountService'
-    import EOSKeygen from '../util/EOSKeygen'
+    import RSNKeygen from '../util/RSNKeygen'
     import {Countries} from '../data/Countries'
     import PluginRepository from '../plugins/PluginRepository'
     import {Blockchains} from '../models/Blockchains'
@@ -147,7 +147,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
                 'networks',
@@ -156,11 +156,11 @@
         },
         mounted(){
             this.selectNetwork(this.networks[0]);
-            const existing = this.scatter.keychain.identities.find(x => x.publicKey === this.$route.query.publicKey);
+            const existing = this.arkid.keychain.identities.find(x => x.publicKey === this.$route.query.publicKey);
             if(existing) this.identity = existing.clone();
             else {
                 this.identity = Identity.placeholder();
-                this.identity.initialize(this.scatter.hash).then(() => {
+                this.identity.initialize(this.arkid.hash).then(() => {
                     this.identity.name = `${this.locale(this.langKeys.GENERIC_New)} ${this.locale(this.langKeys.GENERIC_Identity)}`;
                 })
             }
@@ -176,10 +176,10 @@
             async claimIdentity(){
                 const updatedIdentity = await RIDLService.claimIdentity(this.newName, this.identity.clone(), this).catch(() => null);
                 if(updatedIdentity) {
-                    const scatter = this.scatter.clone();
+                    const arkid = this.arkid.clone();
                     this.identity.name = updatedIdentity.name;
-                    scatter.keychain.updateOrPushIdentity(updatedIdentity);
-                    await this[Actions.UPDATE_STORED_SCATTER](scatter);
+                    arkid.keychain.updateOrPushIdentity(updatedIdentity);
+                    await this[Actions.UPDATE_STORED_ARKID](arkid);
                     this.$router.back();
                 }
             },
@@ -259,14 +259,14 @@
                 // * Email
                 // * State ( if exists, only 2 characters )
 
-                const scatter = this.scatter.clone();
-                scatter.keychain.updateOrPushIdentity(this.identity);
-                this[Actions.UPDATE_STORED_SCATTER](scatter).then(() => this.$router.back());
+                const arkid = this.arkid.clone();
+                arkid.keychain.updateOrPushIdentity(this.identity);
+                this[Actions.UPDATE_STORED_ARKID](arkid).then(() => this.$router.back());
 
             },
             ...mapActions([
                 Actions.SIGN_RIDL,
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
                 Actions.PUSH_ALERT
             ])
         }

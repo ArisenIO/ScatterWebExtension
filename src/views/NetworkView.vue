@@ -28,7 +28,7 @@
     import * as Actions from '../store/constants';
     import {RouteNames} from '../vue/Routing'
     import Network from '../models/Network'
-    import Scatter from '../models/Scatter'
+    import ArkId from '../models/ArkId'
     import AlertMsg from '../models/alerts/AlertMsg'
     import IdentityService from '../services/IdentityService'
     import {BlockchainsArray} from '../models/Blockchains';
@@ -41,7 +41,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
                 'networks'
@@ -62,7 +62,7 @@
                 this.network.host = newHost;
             },
             async saveNetwork(){
-                const scatter = this.scatter.clone();
+                const arkid = this.arkid.clone();
 
                 const endorsedNetworks = await PluginRepository.endorsedNetworks();
                 if(endorsedNetworks.map(network => network.host).includes(this.network.host)){
@@ -83,15 +83,15 @@
                     return false;
                 }
 
-                scatter.settings.networks.unshift(this.network);
+                arkid.settings.networks.unshift(this.network);
 
-                this[Actions.UPDATE_STORED_SCATTER](scatter).then(() => {
+                this[Actions.UPDATE_STORED_ARKID](arkid).then(() => {
                     this.$router.back();
                 });
 
             },
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
                 Actions.PUSH_ALERT
             ])
         }

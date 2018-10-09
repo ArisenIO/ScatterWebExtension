@@ -37,7 +37,7 @@
         },
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
                 'permissions'
@@ -54,7 +54,7 @@
                     }, {})
             },
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER
+                Actions.UPDATE_STORED_ARKID
             ])
         }
     }

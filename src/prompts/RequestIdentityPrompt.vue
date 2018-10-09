@@ -110,7 +110,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter',
+                'arkid',
                 'prompt'
             ]),
             ...mapGetters([
@@ -154,7 +154,7 @@
                 NotificationService.close();
             },
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
                 Actions.PUSH_ALERT,
                 Actions.PUSH_PROMPT
             ])

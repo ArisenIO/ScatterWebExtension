@@ -1,5 +1,5 @@
 export const ERROR = 'error';
-export const PUSH_SCATTER = 'pushScatter';
+export const PUSH_ARKID = 'pushArkId';
 export const GET_OR_REQUEST_IDENTITY = 'getOrRequestIdentity';
 export const IDENTITY_FROM_PERMISSIONS = 'identityFromPermissions';
 export const FORGET_IDENTITY = 'forgetIdentity';

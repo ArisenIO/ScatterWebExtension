@@ -23,7 +23,7 @@ export default class AuthenticationService {
             };
 
             // We're going to immediately take a wrong password here as a sign
-            // of hostility and lock Scatter by overwriting the seed.
+            // of hostility and lock ArkId by overwriting the seed.
             context[Actions.SET_SEED](password).then(() => {
                 context[Actions.IS_UNLOCKED]().then(unlocked => {
                     if(!unlocked) { sendToEntry(); return false; }
@@ -52,13 +52,13 @@ export default class AuthenticationService {
 
         const [newMnemonic, newSeed] = await Mnemonic.generateMnemonic(newPassword);
 
-        const scatter = context.scatter.clone();
+        const arkid = context.arkid.clone();
         context[Actions.SET_MNEMONIC](newMnemonic);
         context[Actions.SET_SEED](newPassword).then(() => {
             // Replacing private key encryption
-            scatter.keychain.keypairs.map(keypair => keypair.decrypt(oldSeed));
+            arkid.keychain.keypairs.map(keypair => keypair.decrypt(oldSeed));
 
-            context[Actions.UPDATE_STORED_SCATTER](scatter).then(() => {
+            context[Actions.UPDATE_STORED_ARKID](arkid).then(() => {
                 context.$router.push({name:RouteNames.SHOW_MNEMONIC});
             })
         });

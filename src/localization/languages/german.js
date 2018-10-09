@@ -51,11 +51,11 @@ export default {
     [KEYS.BUTTON_SetAsDefaultLocation]:'Standort als Standardeinstellung wählen',
     [KEYS.BUTTON_RemoveLocation]:'Standort entfernen',
     [KEYS.BUTTON_ChangePassword]:'Passwort ändern',
-    [KEYS.BUTTON_DestroyScatter]:'Scatter löschen',
-    [KEYS.BUTTON_CreateNewScatter]:'Scatter neu erstellen',
+    [KEYS.BUTTON_DestroyArkId]:'ArisenID löschen',
+    [KEYS.BUTTON_CreateNewArkId]:'ArisenID neu erstellen',
     [KEYS.BUTTON_LoadFromBackup]:'Von Backup laden',
     [KEYS.BUTTON_Unlock]:'Entsperren',
-    [KEYS.BUTTON_ExportScatter]:'Scatter exportieren',
+    [KEYS.BUTTON_ExportArkId]:'ArisenID exportieren',
     [KEYS.BUTTON_GenerateKeyPair]:'Schlüsselpaar generieren',
     [KEYS.BUTTON_Validate]:'Überprüfen',
     [KEYS.BUTTON_Copy]:'Kopieren',
@@ -129,13 +129,13 @@ export default {
 
     [KEYS.HISTORIES_Header]:`Du hast keine Ereignisse im Verlauf anzuzeigen.`,
     [KEYS.HISTORIES_Description]:`
-        Sobald du welche hast wirst du eine Liste aller Ereignisse sehen die durch Scatter gehen.
-        Jedoch wirst du nicht Ereignisse deiner Accounts sehen die ausserhalb von Scatter geschehen sind.
+        Sobald du welche hast wirst du eine Liste aller Ereignisse sehen die durch ArisenID gehen.
+        Jedoch wirst du nicht Ereignisse deiner Accounts sehen die ausserhalb von ArisenID geschehen sind.
      `,
     [KEYS.HISTORIES_Note]:`
-        Hinweis: Das Exportieren der Scatter Daten durch die Backup Option in den Einstellungen speichert diese
+        Hinweis: Das Exportieren der ArisenID Daten durch die Backup Option in den Einstellungen speichert diese
         Ereignisse nicht.
-        Wenn du diese Scatter Instanz wieder importierst wird dein Verlauf leer sein. Wenn du deinen Verlauf künftig
+        Wenn du diese ArisenID Instanz wieder importierst wird dein Verlauf leer sein. Wenn du deinen Verlauf künftig
         exportieren möchtest kannst du dies mit den Buttons in der Navigationsleiste hier tun.
     `,
 
@@ -149,7 +149,7 @@ export default {
 
     [KEYS.BACKUP_Header]:`Exportiere verschlüsseltes Backup`,
     [KEYS.BACKUP_Description]:`
-        Das Exportieren deines Scatters erlaubt dir diesen auf anderen Geräten zu importieren.
+        Das Exportieren deines ArisenIDs erlaubt dir diesen auf anderen Geräten zu importieren.
         Die exportierte Datei wird verschlüsselt also stelle sicher, dass du deine Mnemonics oder dein Passwort gesichert hast,
         sonst sind die exportierten Daten nutzlos. Deine privaten Schlüssel werden beim Export ebenfalls entfernt,
         die einzigen privaten Schlüssel die exportiert werden sind die Schlüssel deiner Identitäten.
@@ -169,18 +169,18 @@ export default {
         Um mit diesem Netzwerk zu interagieren brauchst du dort ebenfalls einen Account.
     `,
 
-    [KEYS.DESTROY_Header]:`Scatter löschen`,
+    [KEYS.DESTROY_Header]:`ArisenID löschen`,
     [KEYS.DESTROY_Description]:`
-        Du bist dabei deine komplette Scatter-Keychain zu löschen. Die einzige möglichkeit exakt diesen Scatter wiederherzustellen ist,
-        indem du eine exportierte Scatter-JSON importierst. Es ist nicht möglich deine beanspruchten Identitäten anders wiederherzustellen.
-        Stelle sicher, dass du deinen Scatter über die Einstellungen exportiert und gespeichert hast.
+        Du bist dabei deine komplette ArisenID-Keychain zu löschen. Die einzige möglichkeit exakt diesen ArisenID wiederherzustellen ist,
+        indem du eine exportierte ArisenID-JSON importierst. Es ist nicht möglich deine beanspruchten Identitäten anders wiederherzustellen.
+        Stelle sicher, dass du deinen ArisenID über die Einstellungen exportiert und gespeichert hast.
     `,
 
     [KEYS.LANGUAGE_Header]:`Wähle deine Sprache aus`,
 
     [KEYS.KEYPAIR_Header]:`Erstelle ein neues Schlüsselpaar`,
     [KEYS.KEYPAIR_Description]:`
-        Hier kannst du EOS-Schlüsselpaare erzeugen. Die erzeugten Schlüsselpaare werden lokal auf deinem Rechner erzeugt und werden nie versendet.
+        Hier kannst du Arisen-Schlüsselpaare erzeugen. Die erzeugten Schlüsselpaare werden lokal auf deinem Rechner erzeugt und werden nie versendet.
         Du kannst auch ein Schlüsselpaar hinzufügen und überprüfen, ob der private Schlüssel mit dem öffentlichen Schlüssel übereinstimmt.
         Beachte, dass diese Schlüssel durch Entropie erzeugt werden, die von deinem Computer und nicht von einem bestimmten Seed stammen.
     `,
@@ -191,7 +191,7 @@ export default {
 
     [KEYS.LOCK_Header]:`Automatische Sperre`,
     [KEYS.LOCK_Description]:`
-        Die automatische Sperre beeinflusst wie schnell Scatter gesperrt wird damit du nicht immer selber dran denken
+        Die automatische Sperre beeinflusst wie schnell ArisenID gesperrt wird damit du nicht immer selber dran denken
         musst wenn du weggehst.
     `,
     [KEYS.LOCK_Minute]:`Minute`,
@@ -204,7 +204,7 @@ export default {
     [KEYS.MNEMONIC_Header]:`Mnemonic`,
     [KEYS.MNEMONIC_Description]:`Mnemonics sind eine Folge von Worten die einem kryptographischen Seed entsprechen.`,
     [KEYS.MNEMONIC_Note]:`
-        Bewahre deine Worte unbedingt sicher auf! Es ist der einzige Weg um wieder Zugang zu deinem Scatter zu erhalten
+        Bewahre deine Worte unbedingt sicher auf! Es ist der einzige Weg um wieder Zugang zu deinem ArisenID zu erhalten
         und deine privaten Informationen zu entschlüsseln, falls du jemals dein Passwort vergessen solltest.
     `,
 
@@ -242,7 +242,7 @@ export default {
         'Keine Accounts gefunden',
 
         `Es wurden keine Accounts gefunden, die zu diesem privaten Schlüssel gehören.
-         Wenn du einen Schlüssel importieren willst, der nicht mit Scatter erstellt wurde
+         Wenn du einen Schlüssel importieren willst, der nicht mit ArisenID erstellt wurde
          musst du einen Account für diesen Schlüssel erstellen bevor du diesen importierst.`
     ],
     //2
@@ -268,7 +268,7 @@ export default {
         'Netzwerk-Host ungültig',
 
         `Der eingegebene Netzwerk-Host war ungültig. Hosts sollten entweder ein Domänenname
-        ( z.B: testnet.eos.io) oder eine IP ( z.B: 192.168.0.1 ) sein.`
+        ( z.B: greatchain.arisennodes.io) oder eine IP ( z.B: 192.168.0.1 ) sein.`
     ],
     //2
     [KEYS.ALERT_NetworkExists]:[
@@ -280,7 +280,7 @@ export default {
     [KEYS.ALERT_RemovingEndorsedNetwork]:[
         'Offizielles Netzwerk kann nicht entfernt werden',
 
-        `Scatters offizielles Netzwerk kann nicht entfernt werden. Dieses Netzwerk wird genutzt um unsere Smart Contracts zur Verfügung zu stellen.`
+        `ArisenIDs offizielles Netzwerk kann nicht entfernt werden. Dieses Netzwerk wird genutzt um unsere Smart Contracts zur Verfügung zu stellen.`
     ],
     //2
     [KEYS.ALERT_NoIdentityWithProperties]:fields => [
@@ -296,8 +296,8 @@ export default {
          andernfalls musst du eine Identität auswählen um diese Anfrage zu akzeptieren.`
     ],
     //2
-    [KEYS.PROMPT_DestroyingScatter]:[
-        'Scatter löschen',
+    [KEYS.PROMPT_DestroyingArkId]:[
+        'ArisenID löschen',
 
         'Dies ist deine letzte Chance, deine Backups zu überprüfen.'
     ],
@@ -359,11 +359,11 @@ export default {
 
     //3
     [KEYS.REQUEST_AddNetwork]:[
-        /*{DOMAIN}*/ 'möchte ihr Netzwerk zu deinem Scatter hinzufügen.',
+        /*{DOMAIN}*/ 'möchte ihr Netzwerk zu deinem ArisenID hinzufügen.',
 
         'Manche Anwendungen benutzen ihr eigenes Netzwerk.',
 
-        `Die Anwendung hat dadurch keine Möglichkeit auf dein Scatter zuzugreifen.
+        `Die Anwendung hat dadurch keine Möglichkeit auf dein ArisenID zuzugreifen.
          Ein Netzwerk über dieses Interface hinzuzufügen erspart dir einfach nur
          die Mühe es manuell über die Einstellungen hinzuzufügen.`
     ],
@@ -402,27 +402,27 @@ export default {
         `Wenn mehrere Standorte hinterlegt sind und eine Transaktion einen Standort erfordert, wirst du immer danach gefragt werden.`
     ],
     //4
-    [KEYS.REQUEST_ScatterIsLocked]:[
-        `Dein Scatter ist gesperrt!`,
+    [KEYS.REQUEST_ArkIdIsLocked]:[
+        `Dein ArisenID ist gesperrt!`,
 
-        `Bevor du dein Scatter benutzen kannst musst du es erst entsperren.`,
+        `Bevor du dein ArisenID benutzen kannst musst du es erst entsperren.`,
 
         `Wir werden absichtlich nie eine Nachricht anzeigen, die dich auffordert dich einzuloggen.`,
 
         `Wenn du irgendwo aufgefordert wirst dein Passwort anzugeben, handelt es sich um eine bösartige Website die versucht, dein Passwort zu erhalten.
-         Entsperre dein Scatter immer nur aus dem Popup der Erweiterung, indem du auf das Symbol in deinem Browser-Tray klickst.`
+         Entsperre dein ArisenID immer nur aus dem Popup der Erweiterung, indem du auf das Symbol in deinem Browser-Tray klickst.`
     ],
     //4
     [KEYS.REQUEST_UpdateVersion]:[
-        `Dein Scatter ist veraltet!`,
+        `Dein ArisenID ist veraltet!`,
 
-        /*{DOMAIN}*/ `erfordert eine neuere Version von Scatter als die installierte.`,
+        /*{DOMAIN}*/ `erfordert eine neuere Version von ArisenID als die installierte.`,
 
         `Dies bedeutet in der Regel, dass neue Funktionen bereitgestellt wurden und eine Anwendung versucht diese zu verwenden,
          diese aber nicht in der derzeit von dir installierten Version enthalten sind.`,
 
         `Bitte beachte, dass wir die Versionsprüfung den Anwendungen selbst überlassen. Diese Anwendungen könnten versuchen
-         dich dazu bringen, etwas bösartiges herunterzuladen. Stelle sicher, dass du Scatter immer von einer vertrauenswürdigen Stelle herunterlädst!`
+         dich dazu bringen, etwas bösartiges herunterzuladen. Stelle sicher, dass du ArisenID immer von einer vertrauenswürdigen Stelle herunterlädst!`
     ],
 
 }

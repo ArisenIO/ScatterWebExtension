@@ -56,11 +56,11 @@ export const BUTTON_AddNewLocation = 'btn_add_loc';
 export const BUTTON_SetAsDefaultLocation = 'btn_set_def_loc';
 export const BUTTON_RemoveLocation = 'btn_rem_loc';
 export const BUTTON_ChangePassword = 'btn_cng_pass';
-export const BUTTON_DestroyScatter = 'btn_destr_scat';
-export const BUTTON_CreateNewScatter = 'btn_create_scat';
+export const BUTTON_DestroyArkId = 'btn_destr_scat';
+export const BUTTON_CreateNewArkId = 'btn_create_scat';
 export const BUTTON_LoadFromBackup = 'btn_load_scat';
 export const BUTTON_Unlock = 'btn_unlock';
-export const BUTTON_ExportScatter = 'btn_export_scat';
+export const BUTTON_ExportArkId = 'btn_export_scat';
 export const BUTTON_GenerateKeyPair = 'btn_gen_kp';
 export const BUTTON_Validate = 'btn_validate';
 export const BUTTON_Copy = 'btn_copy';
@@ -177,7 +177,7 @@ export const ALERT_RemovingEndorsedNetwork = 'alert_rm_end_net';
 export const ALERT_NoIdentityWithProperties = 'alert_no_id_w_prop';
 export const ALERT_YouMustSelectAnIdentity = 'alert_mst_sel_id';
 
-export const PROMPT_DestroyingScatter = 'prompt_destr_scat';
+export const PROMPT_DestroyingArkId = 'prompt_destr_scat';
 export const PROMPT_RevokingIdentity = 'prompt_revk_id';
 export const PROMPT_RevokingContract = 'prompt_revk_contr';
 export const PROMPT_RevokingContractAction = 'prompt_revk_contr_act';
@@ -195,18 +195,5 @@ export const REQUEST_AddNetwork = 'req_add_net';
 export const REQUEST_Identity = 'req_id';
 export const REQUEST_IdentityNoIdentities = 'req_id_no_ids';
 export const REQUEST_SignatureWhitelist = 'req_sig_white';
-export const REQUEST_ScatterIsLocked = 'req_scat_locked';
+export const REQUEST_ArkIdIsLocked = 'req_scat_locked';
 export const REQUEST_UpdateVersion = 'req_updt_vers';
-
-
-
-
-
-
-
-
-
-
-
-
-

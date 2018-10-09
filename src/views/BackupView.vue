@@ -15,7 +15,7 @@
             <figure class="sub-header">{{locale(langKeys.BACKUP_Description)}}</figure>
 
             <a id="KEYCHAIN_DOWNLOAD">
-                <btn v-on:clicked="exportBackup" :text="locale(langKeys.BUTTON_ExportScatter)" is-red="true" :margined="true"></btn>
+                <btn v-on:clicked="exportBackup" :text="locale(langKeys.BUTTON_ExportArkId)" is-red="true" :margined="true"></btn>
             </a>
         </section>
 
@@ -29,7 +29,7 @@
     import AlertMsg from '../models/alerts/AlertMsg'
     import IdentityService from '../services/IdentityService';
     import Mnemonic from '../util/Mnemonic'
-    import EOSKeygen from '../util/EOSKeygen'
+    import RSNKeygen from '../util/RSNKeygen'
     import StorageService from '../services/StorageService'
     import AuthenticationService from '../services/AuthenticationService'
     import AES from 'aes-oop';
@@ -41,7 +41,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
 
@@ -58,10 +58,10 @@
                 const [mnemonic, seed] = await Mnemonic.generateMnemonic(this.password);
                 if(!seed) return false;
 
-                const scatter = this.scatter.clone();
-                let filetext = AES.encrypt(scatter, seed);
+                const arkid = this.arkid.clone();
+                let filetext = AES.encrypt(arkid, seed);
                 filetext += `|SSLT|${await StorageService.getSalt()}`;
-                const filename = `scatter_${+new Date()}.scatter_backup.txt`;
+                const filename = `arkid_${+new Date()}.arkid_backup.txt`;
                 this.save(filename, filetext);
             },
             save(filename, data) {

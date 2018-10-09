@@ -1,7 +1,7 @@
 import {locales} from '../../src/localization/locales'
 import chrome from '../helpers/chrome';
 
-import Eos from 'eosjs';
+import Rsn from 'arisenjs';
 
 import { expect, assert } from 'chai';
 import 'mocha';

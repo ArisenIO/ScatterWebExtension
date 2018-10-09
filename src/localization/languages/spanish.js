@@ -46,11 +46,11 @@ export default {
     [KEYS.BUTTON_SetAsDefaultLocation]:'Establecer Como Ubicación Predeterminada',
     [KEYS.BUTTON_RemoveLocation]:'Eliminar Ubicación',
     [KEYS.BUTTON_ChangePassword]:'Cambiar Contraseña',
-    [KEYS.BUTTON_DestroyScatter]:'Borrar Scatter',
-    [KEYS.BUTTON_CreateNewScatter]:'Crear Nuevo Scatter',
+    [KEYS.BUTTON_DestroyArkId]:'Borrar ArisenID',
+    [KEYS.BUTTON_CreateNewArkId]:'Crear Nuevo ArisenID',
     [KEYS.BUTTON_LoadFromBackup]:'Cargar Desde Respaldo',
     [KEYS.BUTTON_Unlock]:'Desbloquear',
-    [KEYS.BUTTON_ExportScatter]:'Exportar Scatter',
+    [KEYS.BUTTON_ExportArkId]:'Exportar ArisenID',
     [KEYS.BUTTON_GenerateKeyPair]:'Generar Par de Llaves',
     [KEYS.BUTTON_Validate]:'Validar',
     [KEYS.BUTTON_Copy]:'Copiar',
@@ -70,9 +70,9 @@ export default {
 
     [KEYS.IDENTITIES_Header]:`No tienes ninguna Identidad todavía.`,
     [KEYS.IDENTITIES_Description]:`
-        Las Identidades son contenedores de información personal como nombre y apellidos, direcciones 
+        Las Identidades son contenedores de información personal como nombre y apellidos, direcciones
         y varias cuentas/par de llaves de blockchain. Las Identidades también tienen pares de llaves
-        y su propiedad se puede probar, lo que las convierte en una forma de autenticarse con aplicaciones 
+        y su propiedad se puede probar, lo que las convierte en una forma de autenticarse con aplicaciones
         sin contraseñas.
     `,
 
@@ -85,31 +85,31 @@ export default {
 
     [KEYS.IDENTITY_NameHeader]:`Nombre de Identidad`,
     [KEYS.IDENTITY_NameDescription]:`
-        Las Aplicaciones pueden elegir usar este nombre como tu nombre de usuario, ya que es único en todas las redes. 
-        Si no estas registrado con RIDL recibirás un nombre aleatorio. 
+        Las Aplicaciones pueden elegir usar este nombre como tu nombre de usuario, ya que es único en todas las redes.
+        Si no estas registrado con RIDL recibirás un nombre aleatorio.
     `,
     [KEYS.IDENTITY_AccountHeader]:`Cuenta`,
     [KEYS.IDENTITY_AccountDescription]:`
         Las Cuentas son las que sostienen tus fondos y te permiten interactuar con contractos en la Blockchain.
-        En relación con las Identidades, piensa en ellas como las cuentas bancarias conectadas a tu pasaporte, 
+        En relación con las Identidades, piensa en ellas como las cuentas bancarias conectadas a tu pasaporte,
         pueden ser cambiadas en cualquier momento.
     `,
     [KEYS.IDENTITY_PersonalHeader]:`Información Personal`,
     [KEYS.IDENTITY_PersonalDescription]:`
         Información Personal puede ser agregada a una cuenta para aplicaciones que lo requieran. Por ejemplo,
-        una página de compras puede necesitar tu nombre completo para saber a quién enviarle los artículos 
+        una página de compras puede necesitar tu nombre completo para saber a quién enviarle los artículos
         adquiridos.
     `,
     [KEYS.IDENTITY_LocationHeader]:`Información de Ubicación`,
     [KEYS.IDENTITY_LocationDescription]:`
         Información de Ubicación puede ser agregada a una cuenta para aplicaciones que lo requieran.
-        Por ejemplo, una página de compras puede necesitar tu dirección de envío para saber a dónde enviar 
+        Por ejemplo, una página de compras puede necesitar tu dirección de envío para saber a dónde enviar
         los artículos adquiridos.
     `,
 
     [KEYS.PERMISSIONS_Header]:`No tienes permisos para mostrar.`,
     [KEYS.PERMISSIONS_Description]:`
-        Los Permisos se establecen cuando proporcionas una Identidad para que sea usada por una aplicación 
+        Los Permisos se establecen cuando proporcionas una Identidad para que sea usada por una aplicación
         o cuando agregas una acción de contrato a la lista blanca para que sea firmada sin avisos
         de autorización.
     `,
@@ -119,12 +119,12 @@ export default {
 
     [KEYS.HISTORIES_Header]:`No tienes eventos históricos para mostrar.`,
     [KEYS.HISTORIES_Description]:`
-        Una vez los tengas podrás ver una lista de todos los eventos que pasan por tu Scatter.
-        Lo que no verás son eventos que hayan ocurrido en tus cuentas fuera de Scatter.
+        Una vez los tengas podrás ver una lista de todos los eventos que pasan por tu ArisenID.
+        Lo que no verás son eventos que hayan ocurrido en tus cuentas fuera de ArisenID.
      `,
     [KEYS.HISTORIES_Note]:`
-        Nota: La exportación de los datos de Scatter desde la opción de respaldo en el panel de configuración no guarda estos eventos.
-        Cuando importes esa instancia de Scatter, tus historiales estarán vacíos. Si deseas exportar tus historiales
+        Nota: La exportación de los datos de ArisenID desde la opción de respaldo en el panel de configuración no guarda estos eventos.
+        Cuando importes esa instancia de ArisenID, tus historiales estarán vacíos. Si deseas exportar tus historiales
         en el futuro puedes hacerlo usando los botones de acción en la barra de navegación dentro de este panel.
     `,
 
@@ -138,7 +138,7 @@ export default {
 
     [KEYS.BACKUP_Header]:`Exportar respaldo encriptado`,
     [KEYS.BACKUP_Description]:`
-        Exportar tu Scatter te permite importarlo en otros dispositivos. El archivo seguirá encriptado cuando sea
+        Exportar tu ArisenID te permite importarlo en otros dispositivos. El archivo seguirá encriptado cuando sea
         exportado así que asegúrate de tener tus mnemotécnicos o contraseña; de lo contrario, será inútil. Las llaves privadas
         de tus cuentas también se eliminarán antes de exportar, las únicas llaves privadas que permanecerán dentro del archivo
         exportado serán tus llaves de Identidad.
@@ -152,26 +152,26 @@ export default {
 
     [KEYS.NETWORK_Header]:`Agregar nueva red`,
     [KEYS.NETWORK_Description]:`
-        Las aplicaciones generalmente se ejecutan en una red específica, pero es posible 
-        que no se ejecuten todas en la misma red. Por ejemplo, una aplicación puede tener una 
-        red de prueba que tiene nuevas funcionalidades que aún no se han lanzado. Para 
+        Las aplicaciones generalmente se ejecutan en una red específica, pero es posible
+        que no se ejecuten todas en la misma red. Por ejemplo, una aplicación puede tener una
+        red de prueba que tiene nuevas funcionalidades que aún no se han lanzado. Para
         interactuar con esa red necesitarás tener una cuenta allí también.
     `,
 
-    [KEYS.DESTROY_Header]:`Borrando Scatter`,
+    [KEYS.DESTROY_Header]:`Borrando ArisenID`,
     [KEYS.DESTROY_Description]:`
-        Estás a punto de borrar todo tu llavero de Scatter. La única forma de recuperar este mismo Scatter es
-        importando un JSON exportado de Scatter. De lo contrario No podrás reclamar tus identidades. Asegúrate
-        de haber exportado tu Scatter desde el paración de respaldo de antemano.
+        Estás a punto de borrar todo tu llavero de ArisenID. La única forma de recuperar este mismo ArisenID es
+        importando un JSON exportado de ArisenID. De lo contrario No podrás reclamar tus identidades. Asegúrate
+        de haber exportado tu ArisenID desde el paración de respaldo de antemano.
     `,
 
     [KEYS.LANGUAGE_Header]:`Selecciona tu idioma`,
 
     [KEYS.KEYPAIR_Header]:`Generar nuevo Par de Llaves`,
     [KEYS.KEYPAIR_Description]:`
-        Puedes usar este panel para generar pares de llaves de EOS. Estos pares de llaves se generan localmente 
-        en tu máquina y nunca se envían a ningún lado. También puedes pegar un par de llaves y verificar que la llave 
-        privada coincida con la llave pública. Ten en cuenta que esas llaves se generan utilizando la entropía recopilada 
+        Puedes usar este panel para generar pares de llaves de RSN. Estos pares de llaves se generan localmente
+        en tu máquina y nunca se envían a ningún lado. También puedes pegar un par de llaves y verificar que la llave
+        privada coincida con la llave pública. Ten en cuenta que esas llaves se generan utilizando la entropía recopilada
         de tu ordenador y no de una semilla específica.
     `,
     [KEYS.KEYPAIR_Validation_Header]:`Generar nuevo Par de Llaves`,
@@ -181,8 +181,8 @@ export default {
 
     [KEYS.LOCK_Header]:`Temporizador de Bloqueo Automático`,
     [KEYS.LOCK_Description]:`
-        El Bloqueo Automático maneja el bloqueo de Scatter para que no tengas 
-        que recordar bloquear tu Scatter cuando te alejes del ordenador.
+        El Bloqueo Automático maneja el bloqueo de ArisenID para que no tengas
+        que recordar bloquear tu ArisenID cuando te alejes del ordenador.
     `,
     [KEYS.LOCK_Minute]:`Minuto`,
     [KEYS.LOCK_Minutes]:`Minutos`,
@@ -194,8 +194,8 @@ export default {
     [KEYS.MNEMONIC_Header]:`Mnemotécnico`,
     [KEYS.MNEMONIC_Description]:`Los mnemotécnicos son un conjunto de palabras que se traducen en una semilla criptográfica.`,
     [KEYS.MNEMONIC_Note]:`
-        Asegúrate de guardar el tuyo en un lugar seguro. Es la única forma de recuperar 
-        el acceso a tu Scatter y desencriptar tu información privada si olvidas tu contraseña.
+        Asegúrate de guardar el tuyo en un lugar seguro. Es la única forma de recuperar
+        el acceso a tu ArisenID y desencriptar tu información privada si olvidas tu contraseña.
     `,
 
     [KEYS.ERROR_MustSelectItem]:`Debes seleccionar un item.`,
@@ -233,7 +233,7 @@ export default {
 
         `No se encontraron cuentas conectadas a esta llave privada.
          Si deseas importar una llave que no es generada por
-         Scatter necesitarás crear una cuenta para la llave
+         ArisenID necesitarás crear una cuenta para la llave
          antes de importarla.`
     ],
     //2
@@ -259,7 +259,7 @@ export default {
         'Host de la Red Inválido',
 
         `El Host de Red que has ingresado es inválido. Los Hosts deben ser un nombre de dominio
-         ( ej.: testnet.eos.io ) o una IP ( ej.: 192.168.0.1 ).`
+         ( ej.: greatchain.arisennodes.io ) o una IP ( ej.: 192.168.0.1 ).`
     ],
     //2
     [KEYS.ALERT_NetworkExists]:[
@@ -271,7 +271,7 @@ export default {
     [KEYS.ALERT_RemovingEndorsedNetwork]:[
         'Imposible Eliminar la Red Endosada',
 
-        `No puedes eliminar la Red endosada de Scatter. Usamos esta Red para alojar nuestros contratos.`
+        `No puedes eliminar la Red endosada de ArisenID. Usamos esta Red para alojar nuestros contratos.`
     ],
     //2
     [KEYS.ALERT_NoIdentityWithProperties]:fields => [
@@ -287,8 +287,8 @@ export default {
          una Identidad para aceptar esta solicitud.`
     ],
     //2
-    [KEYS.PROMPT_DestroyingScatter]:[
-        'Borrando Scatter',
+    [KEYS.PROMPT_DestroyingArkId]:[
+        'Borrando ArisenID',
 
         'Esta es tu última oportunidad para verificar tus respaldos.'
     ],
@@ -338,7 +338,7 @@ export default {
         'Estás a Punto de Incluir un Contrato de Divisas en la Lista Blanca',
 
         `Incluir contratos de divisas en la Lista Blanca es peligroso y nunca debería hacerse. Hay casos específicos en los que esto
-         está bien, pero a menos que estés absolutamente seguro de que este es uno de ellos, no debes incluir en la lista blanca esta 
+         está bien, pero a menos que estés absolutamente seguro de que este es uno de ellos, no debes incluir en la lista blanca esta
          acción del contrato. ¿Estás seguro de que todavía quieres incluir esto en la lista blanca?`
     ],
     //2
@@ -350,11 +350,11 @@ export default {
 
     //3
     [KEYS.REQUEST_AddNetwork]:[
-        /*{DOMAIN}*/ 'quiere agregar su red a tu Scatter.',
+        /*{DOMAIN}*/ 'quiere agregar su red a tu ArisenID.',
 
         'Algunas aplicaciones usan sus propias Redes.',
 
-        `Esto de ninguna manera le da a la aplicación acceso a tu Scatter. 
+        `Esto de ninguna manera le da a la aplicación acceso a tu ArisenID.
          Agregar una red a través de esta interfaz simplemente te ahorra
          el esfuerzo de agregarla manualmente desde el panel de Configuración.`
     ],
@@ -363,7 +363,7 @@ export default {
         /*{DOMAIN}*/ 'está solicitando información adicional.',
 
         `A veces las aplicaciones piden más información, como
-         tu correo electrónico o fecha de nacimiento. Las Identidades a la derecha 
+         tu correo electrónico o fecha de nacimiento. Las Identidades a la derecha
          son las que tienes en la red con esas propiedades específicas disponibles.`,
 
         `Incluso si proporcionas una Identidad con propiedades que la
@@ -395,27 +395,27 @@ export default {
         `Si tienes varias ubicaciones y una transacción requiere una ubicación, siempre se te preguntará.`
     ],
     //4
-    [KEYS.REQUEST_ScatterIsLocked]:[
-        `Tu Scatter está bloqueado!`,
+    [KEYS.REQUEST_ArkIdIsLocked]:[
+        `Tu ArisenID está bloqueado!`,
 
-        `Antes de que puedas hacer algo con tu Scatter necesitarás desbloquearlo.`,
+        `Antes de que puedas hacer algo con tu ArisenID necesitarás desbloquearlo.`,
 
         `A propósito, nunca mostraremos un mensaje/ventana emergente que requiera que inicies sesión.`,
 
         `Si ves un mensaje/ventana emergente que solicite tu contraseña, es un sitio web malicioso que intenta obtener tu contraseña.
-         Desbloquea Scatter solamente desde la ventana emergente de la extensión, haciendo clic en el ícono en la bandeja de tu navegador.`
+         Desbloquea ArisenID solamente desde la ventana emergente de la extensión, haciendo clic en el ícono en la bandeja de tu navegador.`
     ],
     //4
     [KEYS.REQUEST_UpdateVersion]:[
-        `Tu Scatter está desactualizado!`,
+        `Tu ArisenID está desactualizado!`,
 
-        /*{DOMAIN}*/ `requiere que tengas una versión de Scatter más nueva que la instalada.`,
-    
+        /*{DOMAIN}*/ `requiere que tengas una versión de ArisenID más nueva que la instalada.`,
+
         `Esto generalmente significa que se lanzó una nueva funcionalidad y una aplicación está tratando de usarla,
          pero no está actualmente incluida en la versión que tienes instalada.`,
 
         `Ten en cuenta que dejamos la verificación de la versión a las aplicaciones mismas. Podrían intentar maliciosamente
-         hacer que descargues algo. Asegúrate de siempre descargar Scatter desde la ubicación correcta.`
+         hacer que descargues algo. Asegúrate de siempre descargar ArisenID desde la ubicación correcta.`
     ],
 
 }

@@ -18,7 +18,7 @@ export default class Prompt {
         return `${promptPrefix}${this.type}`;
     }
 
-    static scatterIsLocked(){
+    static arisenIsLocked(){
         return new Prompt(PromptTypes.REQUEST_UNLOCK, '', {host:'',port:0}, {}, function(){});
     }
 

@@ -53,7 +53,7 @@ export default class NotificationService {
                     return created;
                 }
                 else {
-                    const win = window.open(url, 'ScatterPrompt', `width=${width},height=${height},resizable=0,top=${middleY},left=${middleX},titlebar=0`);
+                    const win = window.open(url, 'ArkIdPrompt', `width=${width},height=${height},resizable=0,top=${middleY},left=${middleX},titlebar=0`);
                     win.data = notification;
                     openWindow = win;
                     return win;

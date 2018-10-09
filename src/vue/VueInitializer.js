@@ -22,7 +22,7 @@ export default class VueInitializer {
         this.registerComponents(components);
         const router = this.setupRouting(routes, middleware);
 
-        store.dispatch(Actions.LOAD_SCATTER).then(() => {
+        store.dispatch(Actions.LOAD_ARKID).then(() => {
 
             Vue.mixin({
                 data(){ return {
@@ -60,11 +60,11 @@ export default class VueInitializer {
 
     setupVue(router){
         const app = new Vue({router, store});
-        app.$mount('#scatter');
+        app.$mount('#arkid');
 
         // This removes the browser console's ability to
-        // gain access to vuex store. ( for instance `scatter.__vue__.$store.state` )
-        document.getElementById('scatter').removeAttribute('id')
+        // gain access to vuex store. ( for instance `arkid.__vue__.$store.state` )
+        document.getElementById('arkid').removeAttribute('id')
     }
 
 }

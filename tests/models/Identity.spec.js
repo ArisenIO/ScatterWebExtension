@@ -7,7 +7,7 @@ import Account from '../../src/models/Account'
 import ObjectHelpers from '../../src/util/ObjectHelpers'
 import Hasher from '../../src/util/Hasher'
 import RIDLService from '../../src/services/RIDLService'
-let {PrivateKey} = require('eosjs-ecc');
+let {PrivateKey} = require('arisenjs-ecc');
 import { expect, assert } from 'chai';
 import 'mocha';
 
@@ -17,27 +17,27 @@ describe('Identity', () => {
         return `RandomTester${Math.floor(Math.random() * 1000 + 1)}`;
     };
 
-    const networkEOS = new Network('127.0.0.1', 8888, Blockchains.EOS);
+    const networkRSN = new Network('127.0.0.1', 8888, Blockchains.RSN);
     const networkETH = new Network('127.0.0.1', 8888, Blockchains.ETH, 1);
 
-    const keypairEOS = KeyPair.fromJson({
-        blockchain:Blockchains.EOS,
-        name:'Eos Test',
+    const keypairRSN = KeyPair.fromJson({
+        blockchain:Blockchains.RSN,
+        name:'Arisen Test',
         privateKey:'5JPAmzqGszE7gTVsqVacGwxVf5ynyjfWu75v6JMN2LgcdMcFGn1',
-        publicKey:'EOS72r7fskhQPvfy16r7FNCqx45CszTuWRqpTZhUjS7CstfXYGJhS'
+        publicKey:'RSN72r7fskhQPvfy16r7FNCqx45CszTuWRqpTZhUjS7CstfXYGJhS'
     });
 
     const keypairETH = KeyPair.fromJson({
-        blockchain:Blockchains.EOS,
-        name:'Eos Test',
+        blockchain:Blockchains.RSN,
+        name:'Arisen Test',
         privateKey:'a700c8b2744f67adee8a52e0555c351faf087d45d8c6d03a3831ed85f3619b7c',
         publicKey:'0xdb83ff100ec0b6e7e8d385c437e184e4d0112c23'
     });
 
-    const accountEOS = Account.fromJson({
-        keypairUnique:keypairEOS.unique(),
-        publicKey:keypairEOS.publicKey,
-        name:'eostest',
+    const accountRSN = Account.fromJson({
+        keypairUnique:keypairRSN.unique(),
+        publicKey:keypairRSN.publicKey,
+        name:'rsntest',
         authority:'active'
     });
 
@@ -49,7 +49,7 @@ describe('Identity', () => {
     });
 
     const accounts = {
-        [networkEOS.unique()]:accountEOS,
+        [networkRSN.unique()]:accountRSN,
         [networkETH.unique()]:accountETH
     };
 
@@ -88,17 +88,17 @@ describe('Identity', () => {
     const locationFields = { location:Object.keys(LocationFields) };
     const accountFields = {
         accounts:[
-            {blockchain:Blockchains.EOS, host:'127.0.0.1', port:8888},
+            {blockchain:Blockchains.RSN, host:'127.0.0.1', port:8888},
             {blockchain:Blockchains.ETH, chainId:1}
         ]
     };
 
     let emptyIdentity, accountsIdentity, fullIdentity;
-    
+
     it('should initialize test identities', () => {
         new Promise(async() => {
             const privateKey = '5JSKrbWQsR4Vo7GQiPKDw5VNWHsTqo7j2Qvd9zmX3t6s4a8rHzj';
-            const publicKey = 'EOS5nnndpxbBHMZxK8DwxccigWnp7Uwve4KHNotaWtbxqnrNVjSWj';
+            const publicKey = 'RSN5nnndpxbBHMZxK8DwxccigWnp7Uwve4KHNotaWtbxqnrNVjSWj';
             const hash = Hasher.insecureHash(publicKey);
 
             emptyIdentity = Identity.fromJson({ name:randomName(), privateKey, publicKey, hash});

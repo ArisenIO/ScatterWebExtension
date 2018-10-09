@@ -15,11 +15,11 @@ import PluginRepository from '../plugins/PluginRepository'
 
 export default class SignatureService {
 
-    static requestArbitrarySignature(payload, scatter, context, sendResponse){
+    static requestArbitrarySignature(payload, arkid, context, sendResponse){
         const {publicKey, domain, data} = payload;
 
-        const identitySigner = scatter.keychain.identities.find(id => id.publicKey === publicKey);
-        const accountSigners = scatter.keychain.findAccountsWithPublicKey(publicKey);
+        const identitySigner = arkid.keychain.identities.find(id => id.publicKey === publicKey);
+        const accountSigners = arkid.keychain.findAccountsWithPublicKey(publicKey);
         if(!identitySigner && !accountSigners.length) {
             sendResponse(Error.signatureError("signature_rejected", "User rejected the signature request"));
             return false;
@@ -46,11 +46,11 @@ export default class SignatureService {
 
     }
 
-    static requestSignature(payload, scatter, context, sendResponse){
+    static requestSignature(payload, arkid, context, sendResponse){
         const {domain, network, requiredFields} = payload;
 
         // Checking if identity still exists
-        const identity = scatter.keychain.findIdentityFromDomain(payload.domain);
+        const identity = arkid.keychain.findIdentityFromDomain(payload.domain);
         if(!identity || identity.isDisabled){
             sendResponse(Error.identityMissing());
             return false;
@@ -104,7 +104,7 @@ export default class SignatureService {
             const {contract, action} = ContractHelpers.getContractAndActionNames(message);
             const checksum = ContractHelpers.contractActionChecksum(contract, action, domain, network);
             const fields = message.data;
-            return scatter.keychain.hasPermission(checksum, fields);
+            return arkid.keychain.hasPermission(checksum, fields);
         });
 
         const needsLocationAndIdentityHasMultiple = (identity.locations.length > 1 && requiredFields.location.length);

@@ -27,7 +27,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter',
+                'arkid',
                 'mnemonic'
             ])
         },
@@ -61,13 +61,13 @@
                 }
 
                 if(typeof decrypted === 'object' && decrypted.hasOwnProperty('keychain')){
-                    this[Actions.IMPORT_SCATTER]({imported:decrypted, seed}).then(() => {
+                    this[Actions.IMPORT_ARKID]({imported:decrypted, seed}).then(() => {
                         this.$router.push({name:RouteNames.MAIN_MENU});
                     })
                 } else this[Actions.PUSH_ALERT](AlertMsg.BadPassword());
             },
             ...mapActions([
-                Actions.IMPORT_SCATTER,
+                Actions.IMPORT_ARKID,
                 Actions.PUSH_ALERT
             ])
         },

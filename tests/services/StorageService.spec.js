@@ -9,29 +9,29 @@ describe('StorageService', () => {
 
     global.chrome = chrome;
 
-    let scatter = null;
+    let arkid = null;
 
-    it('should be able to get an instance of scatter from the storage even if one does not exist', (done) => {
+    it('should be able to get an instance of arkid from the storage even if one does not exist', (done) => {
         StorageService.get().then(stored => {
-            scatter = stored;
+            arkid = stored;
             done();
         })
     });
 
-    it('should be able to save an instance of scatter to the storage', (done) => {
-        scatter.meta.version = '1.2';
-        StorageService.save(scatter).then(saved => {
+    it('should be able to save an instance of arkid to the storage', (done) => {
+        arkid.meta.version = '1.2';
+        StorageService.save(arkid).then(saved => {
             StorageService.get().then(stored => {
-                assert(stored.meta.version === scatter.meta.version, "Saved scatter does not match");
+                assert(stored.meta.version === arkid.meta.version, "Saved arkid does not match");
                 done();
             })
         })
     });
 
-    it('should be able to remove the instance of scatter from the storage', (done) => {
+    it('should be able to remove the instance of arkid from the storage', (done) => {
         StorageService.remove().then(saved => {
             StorageService.get().then(stored => {
-                assert(stored.meta.version !== scatter.meta.version, "Saved scatter does not match");
+                assert(stored.meta.version !== arkid.meta.version, "Saved arkid does not match");
                 done();
             })
         })

@@ -1,8 +1,8 @@
 import KeyPair from '../models/KeyPair';
 import Mnemonic from './Mnemonic';
-import {PrivateKey} from 'eosjs-ecc';
+import {PrivateKey} from 'arisenjs-ecc';
 
-export default class EOSKeygen {
+export default class RSNKeygen {
 
     /***
      * Generates a KeyPair
@@ -10,8 +10,8 @@ export default class EOSKeygen {
      */
     static generateKeys(){
         let [mnemonic, seed] = Mnemonic.generateDanglingMnemonic();
-        let privateKey = EOSKeygen.generatePrivateKey(seed);
-        let publicKey = EOSKeygen.privateToPublic(privateKey);
+        let privateKey = RSNKeygen.generatePrivateKey(seed);
+        let publicKey = RSNKeygen.privateToPublic(privateKey);
         return KeyPair.fromJson({publicKey, privateKey})
     }
 
@@ -33,7 +33,7 @@ export default class EOSKeygen {
     }
 
     /***
-     * Checks if a private key is a valid EOS private key
+     * Checks if a private key is a valid RSN private key
      * @param privateKey - The private key to check
      * @returns {boolean}
      */

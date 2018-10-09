@@ -24,13 +24,13 @@
     import * as Actions from '../store/constants';
     import {RouteNames} from '../vue/Routing'
     import Network from '../models/Network'
-    import Scatter from '../models/Scatter'
+    import ArkId from '../models/ArkId'
     import AlertMsg from '../models/alerts/AlertMsg'
     import * as AlertTypes from '../models/alerts/AlertTypes'
     import IdentityService from '../services/IdentityService'
     import {BlockchainsArray, Blockchains} from '../models/Blockchains';
     import KeyPair from '../models/KeyPair';
-    import ecc from 'eosjs-ecc';
+    import ecc from 'arisenjs-ecc';
     import PluginRepository from '../plugins/PluginRepository'
     import KeyPairService from '../services/KeyPairService'
 
@@ -42,7 +42,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
                 'networks'
@@ -103,7 +103,7 @@
                 })
             },
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
                 Actions.PUSH_ALERT
             ])
         }

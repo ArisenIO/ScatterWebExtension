@@ -1,24 +1,24 @@
 {
-  "name": "scatter",
+  "name": "arkid",
   "version": "6.1.9",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "set SCATTER_ENV=testing&& mocha-webpack --timeout 1000000 --webpack-config webpack.config.js --require tests/setup.js \"tests/**/*.spec.js\"",
-    "testfile": "set SCATTER_ENV=testing&& mocha-webpack --timeout 1000000 --webpack-config webpack.config.js --require tests/setup.js ",
-    "start": "set SCATTER_ENV=development&& webpack --watch",
-    "build": "set SCATTER_ENV=production&& webpack"
+    "test": "set ARKID_ENV=testing&& mocha-webpack --timeout 1000000 --webpack-config webpack.config.js --require tests/setup.js \"tests/**/*.spec.js\"",
+    "testfile": "set ARKID_ENV=testing&& mocha-webpack --timeout 1000000 --webpack-config webpack.config.js --require tests/setup.js ",
+    "start": "set ARKID_ENV=development&& webpack --watch",
+    "build": "set ARKID_ENV=production&& webpack"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "aes-oop": "^1.0.4",
+    "arisen-rc-parser": "~1.0.0",
+    "arisenjs": "~1.0.0",
+    "arisenjs-api": "~1.0.0",
+    "arisenjs-ecc": "~1.0.0",
     "bip39": "^2.5.0",
     "dotenv-webpack": "^1.5.7",
-    "eos-rc-parser": "^1.0.4",
-    "eosjs": "^16.0.5",
-    "eosjs-api": "^6.3.2",
-    "eosjs-ecc": "^4.0.3",
     "ethereumjs-abi": "^0.6.5",
     "ethereumjs-tx": "^1.3.7",
     "ethereumjs-util": "^5.2.0",

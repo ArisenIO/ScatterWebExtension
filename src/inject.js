@@ -2,12 +2,12 @@ import IdGenerator from './util/IdGenerator';
 import {EncryptedStream} from 'extension-streams';
 import * as PairingTags from './messages/PairingTags'
 import * as NetworkMessageTypes from './messages/NetworkMessageTypes'
-import Scatterdapp from './scatterdapp'
+import ArkIddapp from './arkiddapp'
 
 /***
  * This is the javascript which gets injected into
  * the application and facilitates communication between
- * Scatter and the web application.
+ * ArkId and the web application.
  */
 class Inject {
 
@@ -16,21 +16,17 @@ class Inject {
         // web application.
         const stream = new EncryptedStream(PairingTags.INJECTED, IdGenerator.text(64));
 
-        // Waiting for scatter to push itself onto the application
+        // Waiting for arkid to push itself onto the application
         stream.listenWith(msg => {
-            if(msg && msg.hasOwnProperty('type') && msg.type === NetworkMessageTypes.PUSH_SCATTER)
-                window.scatter = new Scatterdapp(stream, msg.payload);
+            if(msg && msg.hasOwnProperty('type') && msg.type === NetworkMessageTypes.PUSH_ARKID)
+                window.arkid = new ArkIddapp(stream, msg.payload);
         });
 
         // Syncing the streams between the
         // extension and the web application
-        stream.sync(PairingTags.SCATTER, stream.key);
+        stream.sync(PairingTags.ARKID, stream.key);
     }
 
 }
 
 new Inject();
-
-
-
-

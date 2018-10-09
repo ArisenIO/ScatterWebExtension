@@ -138,7 +138,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter',
+                'arkid',
                 'prompt'
             ]),
             ...mapGetters([
@@ -208,7 +208,7 @@
                     }, {})
             },
             identity(){
-                return this.scatter.keychain.findIdentityFromDomain(this.prompt.data.domain);
+                return this.arkid.keychain.findIdentityFromDomain(this.prompt.data.domain);
             },
             accepted(){
                 const returnedFields = Identity.asReturnedFields(this.requiredFields, this.returnedFields, this.selectedLocation);
@@ -219,7 +219,7 @@
                 this.prompt.responder(null);
                 NotificationService.close();
             },
-            isCurrencyContract(){ return !!this.messages.find(message => message.code === 'eos') },
+            isCurrencyContract(){ return !!this.messages.find(message => message.code === 'rsn') },
             toggleWhitelist(){
                 const flip = () => this.whitelisted = !this.whitelisted;
 
@@ -239,7 +239,7 @@
                     : this.mutableFields.push(selectedField);
             },
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
                 Actions.PUSH_ALERT
             ])
         }

@@ -45,11 +45,11 @@ export default {
     [KEYS.BUTTON_SetAsDefaultLocation]:'Izberi kot privzeto lokacijo',
     [KEYS.BUTTON_RemoveLocation]:'Izbriši lokacijo',
     [KEYS.BUTTON_ChangePassword]:'Zamenjaj geslo',
-    [KEYS.BUTTON_DestroyScatter]:'Uniči Scatter',
-    [KEYS.BUTTON_CreateNewScatter]:'Ustvari nov Scatter',
+    [KEYS.BUTTON_DestroyArkId]:'Uniči ArisenID',
+    [KEYS.BUTTON_CreateNewArkId]:'Ustvari nov ArisenID',
     [KEYS.BUTTON_LoadFromBackup]:'Naloži iz backup-a',
     [KEYS.BUTTON_Unlock]:'Odkleni',
-    [KEYS.BUTTON_ExportScatter]:'Izvozi Scatter',
+    [KEYS.BUTTON_ExportArkId]:'Izvozi ArisenID',
     [KEYS.BUTTON_GenerateKeyPair]:'Generiraj ključa',
     [KEYS.BUTTON_Validate]:'Preveri',
     [KEYS.BUTTON_Copy]:'Kopiraj',
@@ -81,7 +81,7 @@ export default {
 
     [KEYS.IDENTITY_NameHeader]:`Naziv identitete`,
     [KEYS.IDENTITY_NameDescription]:`
-        Aplikacija lahko uporabi naziv identitete kot vaše enolično uporabniško ime na omrežju. 
+        Aplikacija lahko uporabi naziv identitete kot vaše enolično uporabniško ime na omrežju.
     `,
     [KEYS.IDENTITY_AccountHeader]:`Račun`,
     [KEYS.IDENTITY_AccountDescription]:`
@@ -107,12 +107,12 @@ export default {
 
     [KEYS.HISTORIES_Header]:`Nimate dogodkov za prikaz.`,
     [KEYS.HISTORIES_Description]:`
-        Ko jih boste imeli, boste lahko videli seznam vseh dogodkov, ki potekajo skozi vaš Scatter.
-        Kar ne boste videli so dogodki, ki so se zgodili na vaših računih zunaj Scatter-ja.
+        Ko jih boste imeli, boste lahko videli seznam vseh dogodkov, ki potekajo skozi vaš ArisenID.
+        Kar ne boste videli so dogodki, ki so se zgodili na vaših računih zunaj ArisenID-ja.
      `,
     [KEYS.HISTORIES_Note]:`
-        Opomba: Če izvažate podatke iz Scatterja v nastavitvah, potem se tej dogodki ne bodo shranili.
-        Ko ponovno uvažate instanco Scatter-ja, bo vaša zgodovina zapisov prazna. Če v prihdonje želite 
+        Opomba: Če izvažate podatke iz ArisenIDja v nastavitvah, potem se tej dogodki ne bodo shranili.
+        Ko ponovno uvažate instanco ArisenID-ja, bo vaša zgodovina zapisov prazna. Če v prihdonje želite
         izvoziti svojo zgodovino lahko to storite z uporabo akcijskih gumbov v navigacijskem meniju.
     `,
 
@@ -126,8 +126,8 @@ export default {
 
     [KEYS.BACKUP_Header]:`Izvozi kriptirano varnostno kopijo`,
     [KEYS.BACKUP_Description]:`
-        Izvoz vašega Scatterja vam omogoča, da ga uvozite v druge naprave. Datoteka, ki jo izvozite bo še vedno šifrirana,
-        zato poskrbite, da boste imeli mnemonik ali geslo, sicer bo neuporabna. Zasebni ključi iz vaših računov bo tudi 
+        Izvoz vašega ArisenIDja vam omogoča, da ga uvozite v druge naprave. Datoteka, ki jo izvozite bo še vedno šifrirana,
+        zato poskrbite, da boste imeli mnemonik ali geslo, sicer bo neuporabna. Zasebni ključi iz vaših računov bo tudi
         pred izvozom odstranjen, edini zasebni ključi, ki bodo ostali v izvozu bo vaš osebni ključ.
     `,
 
@@ -146,9 +146,9 @@ export default {
          to omrežje boste morali imeti tudi račun tam.
     `,
 
-    [KEYS.DESTROY_Header]:`Uniči Scatter`,
+    [KEYS.DESTROY_Header]:`Uniči ArisenID`,
     [KEYS.DESTROY_Description]:`
-        Ste pred uničenjem Scatter-ja. V kolikor bi želeli v bodoče pridobiti stare podatke,
+        Ste pred uničenjem ArisenID-ja. V kolikor bi želeli v bodoče pridobiti stare podatke,
         morate le te izvoziti v JSON obliki. Izvoz je dostopen v varnostni kopiji (meni).
     `,
 
@@ -159,7 +159,7 @@ export default {
 
     [KEYS.KEYPAIR_Header]:`Generaj javni in privatni ključ`,
     [KEYS.KEYPAIR_Description]:`
-        Tukaj lahko generirate zasebni in javni EOS ključ. Ključi so generirani lokalno na vašem računalniku in
+        Tukaj lahko generirate zasebni in javni RSN ključ. Ključi so generirani lokalno na vašem računalniku in
         se nikoli nikamor ne pošiljajo.
     `,
     [KEYS.KEYPAIR_Validation_Header]:`Generiraj javni in privatni ključ`,
@@ -169,7 +169,7 @@ export default {
 
     [KEYS.LOCK_Header]:`Časovnik za samodejno zaklepanje`,
     [KEYS.LOCK_Description]:`
-        Samodejno zaklepanje Scatter aplikacije.
+        Samodejno zaklepanje ArisenID aplikacije.
     `,
     [KEYS.LOCK_Minute]:`Minut`,
     [KEYS.LOCK_Minutes]:`Minut`,
@@ -181,7 +181,7 @@ export default {
     [KEYS.MNEMONIC_Header]:`Mnemoniki`,
     [KEYS.MNEMONIC_Description]:`Mnemomniki so skupek besed, ki jih program uporabi za kriptiranje podatkov.`,
     [KEYS.MNEMONIC_Note]:`
-        Bodite pozorni, da si besede shranite na varno mesto (npr. list papirja). Besede boste potrebovali v primeru, če pozabite geslo za dekriptiranje 
+        Bodite pozorni, da si besede shranite na varno mesto (npr. list papirja). Besede boste potrebovali v primeru, če pozabite geslo za dekriptiranje
         zasebnih podatkov.
     `,
 
@@ -215,7 +215,7 @@ export default {
         'Račun ne obstaja',
 
         `Za vnešeni zasebni ključ ne obstaja noben račun.
-         Če želite uvoziti ključ, ki ni bil generiran s pomočjo Scatter-ja
+         Če želite uvoziti ključ, ki ni bil generiran s pomočjo ArisenID-ja
          potem morate najprej ustvariti račun in šele nato uvoziti zasebni ključ.`
     ],
     [KEYS.ALERT_PasswordsDoNotMatch]:[
@@ -237,7 +237,7 @@ export default {
         'Nerpavilen naslov strežnika',
 
         `Naslov strežnika mora vsebovati (ime strežnika) ali IP številko.
-         ( primer: testnet.eos.io ) ali IP (primer: 192.168.0.1 ).`
+         ( primer: greatchain.arisennodes.io ) ali IP (primer: 192.168.0.1 ).`
     ],
     [KEYS.ALERT_NetworkExists]:[
         'Omrežje že obstaja',
@@ -261,15 +261,15 @@ export default {
          da bi sprejeli to zahtevo.`
     ],
 
-    [KEYS.PROMPT_DestroyingScatter]:[
-        'Uničenje Scatter-ja',
+    [KEYS.PROMPT_DestroyingArkId]:[
+        'Uničenje ArisenID-ja',
 
         'To je vaša zadnja možnost zato še enkrat preverite varnostno kopijo.'
     ],
     [KEYS.PROMPT_RevokingIdentity]:domain => [
         'Zavrnitev identitete',
 
-        `Ste pred zavrnitvijo identitete ${domain}. To bo onemogočilo vse pravice 
+        `Ste pred zavrnitvijo identitete ${domain}. To bo onemogočilo vse pravice
          za identiteto in vse pogodbe, ki so nanjo vezane.`
     ],
     [KEYS.PROMPT_RevokingContract]:domain => [
@@ -285,7 +285,7 @@ export default {
     [KEYS.PROMPT_RemovingIdentity]:name => [
         'Odstranitev identitete',
 
-        `Ste pred odstranitvijo identitete '${name}'. Odstranjeno identite in pravic ni mogoče povrniti. 
+        `Ste pred odstranitvijo identitete '${name}'. Odstranjeno identite in pravic ni mogoče povrniti.
          Če identiteto uporabljate že v povezavi z drugo aplikacijo lahko to enostavneje onemogočite.`
     ],
     [KEYS.PROMPT_RemovingAccount]:formattedAccountName => [
@@ -313,22 +313,22 @@ export default {
 
 
     [KEYS.REQUEST_AddNetwork]:[
-        /*{DOMAIN}*/ 'želi dodati omrežje v vaš Scatter.',
+        /*{DOMAIN}*/ 'želi dodati omrežje v vaš ArisenID.',
 
         'Nekatere aplikacije uporabljajo svoja omrežja.',
 
-        `Akcija ne bo omogočila nikakršnega dostopa do vašega Scatter računa. 
+        `Akcija ne bo omogočila nikakršnega dostopa do vašega ArisenID računa.
          Dodajanje omrežja preko te akcije samo olajša vnos omrežja, da ga ni
          potrebno ročno dodajati preko nastavitvenega panela.`
     ],
     [KEYS.REQUEST_Identity]:[
         /*{DOMAIN}*/ ' potrebuje dodatne podatke ali informacije.',
 
-        `Včasih vas nekatere aplikacije povprašajo po dodatnih kot so 
+        `Včasih vas nekatere aplikacije povprašajo po dodatnih kot so
         elektronska pošta, ime, datum rojstca.`,
 
         `Če tudi posredujete dodatne podatke katere aplikacija ne zahteva,
-        tej ne bodo posredovane iz sistema Scatter.`,
+        tej ne bodo posredovane iz sistema ArisenID.`,
 
         `Edina lastnost, ki se vedno posreduje je vaša identiteta (javni ključ in njegovo ime).`,
 
@@ -350,28 +350,18 @@ export default {
         `This includes required personal information, and changes to your Identity do not remove permissions.`,
         `If you have multiple locations and a transaction requires a location you will always be prompted.`
     ],
-    [KEYS.REQUEST_ScatterIsLocked]:[
-        `Scatter je zaklenjen!`,
-        `Preden pričnete uporabljati Scatter, ga morate najprej odkleniti`,
+    [KEYS.REQUEST_ArkIdIsLocked]:[
+        `ArisenID je zaklenjen!`,
+        `Preden pričnete uporabljati ArisenID, ga morate najprej odkleniti`,
         `Nikoli vas ne bomo povprašali ali prikazovali vnosne maske za prijavo.`,
-        `V kolikor opazite okno, ki od vas zahteva vnos gesla, gre lahko za prevaro! Scatter vedno odklenite na strani vtičnika.`
+        `V kolikor opazite okno, ki od vas zahteva vnos gesla, gre lahko za prevaro! ArisenID vedno odklenite na strani vtičnika.`
     ],
     [KEYS.REQUEST_UpdateVersion]:[
-        `Scatter je potečen!`,
+        `ArisenID je potečen!`,
         /*{DOMAIN}*/ `potrebuje za delovanje novejšo verzijo aplikacije kot jo imate nameščeno na vašem sistemu.`,
-        `To pomeni, da je verjetno zahtevana novejša funkcionalnost, ki jo vaša nameščena verzija programa Scatter še ne podpira.`,
+        `To pomeni, da je verjetno zahtevana novejša funkcionalnost, ki jo vaša nameščena verzija programa ArisenID še ne podpira.`,
         `Opozorilo! Preverjanje posodobitev je prepuščena matični aplikaciji, ki vas lahko pripelje tudi na napačno stran,
-        zato se vedno prepričajte, da aplikacijo prenašate iz Scatter spletne strani.`
+        zato se vedno prepričajte, da aplikacijo prenašate iz ArisenID spletne strani.`
     ],
 
 }
-
-
-
-
-
-
-
-
-
-

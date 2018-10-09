@@ -45,7 +45,7 @@
     import { mapActions, mapGetters, mapState } from 'vuex'
     import * as Actions from '../store/constants';
     import {RouteNames} from '../vue/Routing'
-    import Scatter from '../models/Scatter'
+    import ArkId from '../models/ArkId'
     import AlertMsg from '../models/alerts/AlertMsg'
     import PluginRepository from '../plugins/PluginRepository'
 
@@ -55,7 +55,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
                 'networks'
@@ -77,18 +77,18 @@
 
                 this[Actions.PUSH_ALERT](AlertMsg.RemovingNetwork()).then(res => {
                     if(!res || !res.hasOwnProperty('accepted')) return false;
-                    const scatter = this.scatter.clone();
-                    scatter.settings.networks = scatter.settings.networks.filter(x => x.unique() !== network.unique());
+                    const arkid = this.arkid.clone();
+                    arkid.settings.networks = arkid.settings.networks.filter(x => x.unique() !== network.unique());
 
-                    scatter.keychain.identities.map(id => {
+                    arkid.keychain.identities.map(id => {
                         id.removeAccount(network);
                     });
 
-                    this[Actions.UPDATE_STORED_SCATTER](scatter);
+                    this[Actions.UPDATE_STORED_ARKID](arkid);
                 })
             },
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
                 Actions.PUSH_ALERT,
             ])
         }

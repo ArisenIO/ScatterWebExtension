@@ -8,7 +8,7 @@
 
                 <!-- Account Information -->
                 <section class="panel">
-                    <figure class="header big identity-header">{{domainPermissions.find(perm => perm.isIdentityOnly()).getIdentity(scatter.keychain).name}}</figure>
+                    <figure class="header big identity-header">{{domainPermissions.find(perm => perm.isIdentityOnly()).getIdentity(arkid.keychain).name}}</figure>
                     <figure class="revoke-identity" v-on:click="revoke({type:'identity', perm:domainPermissions.find(perm => perm.isIdentityOnly())})">
                         {{locale(langKeys.PERMISSION_RevokeIdentity)}}
                     </figure>
@@ -53,7 +53,7 @@
     import { mapActions, mapGetters, mapState } from 'vuex'
     import * as Actions from '../store/constants';
     import {RouteNames} from '../vue/Routing'
-    import Scatter from '../models/Scatter'
+    import ArkId from '../models/ArkId'
     import Permission from '../models/Permission'
     import AlertMsg from '../models/alerts/AlertMsg'
     import ObjectHelpers from '../util/ObjectHelpers'
@@ -65,7 +65,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
                 'permissions'
@@ -102,14 +102,14 @@
              * @param permission
              */
             removeIdentityPermissions(permission){
-                const scatter = this.scatter.clone();
+                const arkid = this.arkid.clone();
                 this[Actions.PUSH_ALERT](AlertMsg.RevokingIdentity(this.domain)).then(res => {
                     if(!res || !res.hasOwnProperty('accepted')) return false;
-                    scatter.keychain.permissions = scatter.keychain.permissions.filter(perm =>
+                    arkid.keychain.permissions = arkid.keychain.permissions.filter(perm =>
                         perm.network.unique() !== permission.network.unique() ||
                         perm.domain !== permission.domain ||
                         perm.identity !== permission.identity);
-                    this[Actions.UPDATE_STORED_SCATTER](scatter).then(() => this.goBackIfEmpty());
+                    this[Actions.UPDATE_STORED_ARKID](arkid).then(() => this.goBackIfEmpty());
                 });
             },
 
@@ -119,14 +119,14 @@
              * @param network
              */
             removeContractPermissions(contract, network){
-                const scatter = this.scatter.clone();
+                const arkid = this.arkid.clone();
                 this[Actions.PUSH_ALERT](AlertMsg.RevokingContract(this.domain)).then(res => {
                     if(!res || !res.hasOwnProperty('accepted')) return false;
-                    scatter.keychain.permissions = scatter.keychain.permissions.filter(perm =>
+                    arkid.keychain.permissions = arkid.keychain.permissions.filter(perm =>
                         perm.network.unique() !== network.unique() ||
                         perm.domain !== this.domain ||
                         perm.contract !== contract);
-                    this[Actions.UPDATE_STORED_SCATTER](scatter);
+                    this[Actions.UPDATE_STORED_ARKID](arkid);
                 });
             },
 
@@ -135,12 +135,12 @@
              * @param permission
              */
             removeActionPermissions(permission){
-                const scatter = this.scatter.clone();
+                const arkid = this.arkid.clone();
                 this[Actions.PUSH_ALERT](AlertMsg.RevokingContractAction(this.domain)).then(res => {
                     if(!res || !res.hasOwnProperty('accepted')) return false;
-                    scatter.keychain.permissions = scatter.keychain.permissions
+                    arkid.keychain.permissions = arkid.keychain.permissions
                         .filter(perm => JSON.stringify(perm) !== JSON.stringify(permission));
-                    this[Actions.UPDATE_STORED_SCATTER](scatter);
+                    this[Actions.UPDATE_STORED_ARKID](arkid);
                 });
             },
 
@@ -149,7 +149,7 @@
             },
 
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
                 Actions.PUSH_ALERT,
             ])
         }

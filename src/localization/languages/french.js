@@ -51,11 +51,11 @@ export default {
     [KEYS.BUTTON_SetAsDefaultLocation]:'Définir comme emplacement par défaut',
     [KEYS.BUTTON_RemoveLocation]:'Supprimer l\'emplacement',
     [KEYS.BUTTON_ChangePassword]:'Changer le mot de passe',
-    [KEYS.BUTTON_DestroyScatter]:'Détruire Scatter',
-    [KEYS.BUTTON_CreateNewScatter]:'Créer Nouveau Scatter',
+    [KEYS.BUTTON_DestroyArkId]:'Détruire ArisenID',
+    [KEYS.BUTTON_CreateNewArkId]:'Créer Nouveau ArisenID',
     [KEYS.BUTTON_LoadFromBackup]:'Charger Depuis une Sauvegarde',
     [KEYS.BUTTON_Unlock]:'Déverrouiller',
-    [KEYS.BUTTON_ExportScatter]:'Exporter Scatter',
+    [KEYS.BUTTON_ExportArkId]:'Exporter ArisenID',
     [KEYS.BUTTON_GenerateKeyPair]:'Générer une Paire de Clés',
     [KEYS.BUTTON_Validate]:'Valider',
     [KEYS.BUTTON_Copy]:'Copier',
@@ -80,15 +80,15 @@ export default {
     [KEYS.IDENTITIES_Header]:`Vous n'avez pas encore d'Identités`,
     [KEYS.IDENTITIES_Description]:`
         Les Identités sont des contenants pour vos informations personnelles telles que votre prénom,
-        votre nom, vos emplacements et plusieurs comptes/paires de clés blockchain. Les Identités 
-        ont une paire de clés et il est possible de prouver que l'on en est propriétaire, ce qui 
+        votre nom, vos emplacements et plusieurs comptes/paires de clés blockchain. Les Identités
+        ont une paire de clés et il est possible de prouver que l'on en est propriétaire, ce qui
         en fait un bon moyen de s'identifier auprès d'applications sans utiliser de mot de passe.
     `,
 
     [KEYS.IDENTITY_DisablingHeader]:`A quoi sert Désactiver ?`,
     [KEYS.IDENTITY_DisablingDescription]:`
         Désactiver cette Identité provoque que les applications qui en ont une référence ne peuvent s'en servir.
-        Cette fonction peut être utilisée plutôt que de supprimer de manière permanente cette Identité ou les 
+        Cette fonction peut être utilisée plutôt que de supprimer de manière permanente cette Identité ou les
         Permissions accordées par elle à une application et qui pourraient être difficilement récupérables.
     `,
 
@@ -101,7 +101,7 @@ export default {
 
     [KEYS.IDENTITY_NoKeyPairsHeader]:`Pas de Paire de Clés!`,
     [KEYS.IDENTITY_NoKeyPairsDescription]:`
-        Avant que vous ne puissiez ajouter des comptes blockchain à cette Identité, vous devez ajouter au moins une 
+        Avant que vous ne puissiez ajouter des comptes blockchain à cette Identité, vous devez ajouter au moins une
         Paire de Clés.
         Rendez-vous sur le menu principal et choisissez:
     `,
@@ -109,7 +109,7 @@ export default {
     [KEYS.IDENTITY_AccountHeader]:`Compte`,
     [KEYS.IDENTITY_AccountDescription]:`
         Les comptes détiennent vos fonds et vous permettent d'interagir avec les contrats sur la Blockchain.
-        Leur relation aux Identités peut être vue comme les comptes bancaires attachés à votre passeport: 
+        Leur relation aux Identités peut être vue comme les comptes bancaires attachés à votre passeport:
         ceux-ci peuvent être changés à tout moment.
     `,
 
@@ -122,7 +122,7 @@ export default {
     [KEYS.IDENTITY_LocationHeader]:`Emplacements`,
     [KEYS.IDENTITY_LocationDescription]:`
         Les informations relatives à vos emplacements peuvent être ajoutées à un compte pour les applications qui
-        les demandent. Par exemple, un site marchant pourrait exiger votre adresse de livraison afin de savoir où 
+        les demandent. Par exemple, un site marchant pourrait exiger votre adresse de livraison afin de savoir où
         envoyer les articles.
     `,
 
@@ -138,15 +138,15 @@ export default {
 
     [KEYS.HISTORIES_Header]:`Vous n'avez aucun évènement passé à afficher.`,
     [KEYS.HISTORIES_Description]:`
-        Quand vous en aurez, vous pourrez voir une liste de tous les évènements qui se seront déroulés sur votre 
-        Scatter. Par contre, vous ne verrez pas les évènements qui se sont déroulés sur votre compte en dehors de 
-        Scatter.
+        Quand vous en aurez, vous pourrez voir une liste de tous les évènements qui se seront déroulés sur votre
+        ArisenID. Par contre, vous ne verrez pas les évènements qui se sont déroulés sur votre compte en dehors de
+        ArisenID.
      `,
 
     [KEYS.HISTORIES_Note]:`
-        Note: Exporter les données de votre Scatter depuis l'option Sauvegarder dans le panneau de configuration ne
-        sauvegarde pas ces évènements. Lorsque vous importerez cette instance de Scatter, vos historiques seront vides.
-        Si vous voulez exporter vos historiques, utilisez les boutons d'action situés dans la barre de navigation de ce panneau.  
+        Note: Exporter les données de votre ArisenID depuis l'option Sauvegarder dans le panneau de configuration ne
+        sauvegarde pas ces évènements. Lorsque vous importerez cette instance de ArisenID, vos historiques seront vides.
+        Si vous voulez exporter vos historiques, utilisez les boutons d'action situés dans la barre de navigation de ce panneau.
     `,
 
     [KEYS.SETTINGSMENU_Networks]:'Réseaux',
@@ -159,37 +159,37 @@ export default {
 
     [KEYS.BACKUP_Header]:`Exporter une sauvegarde encryptée`,
     [KEYS.BACKUP_Description]:`
-        Exporter votre Scatter vous permet de l'importer sur d'autres appareils. Le fichier exporté sera encrypté donc 
-        assurez-vous bien d'avoir accès à votre code mnémonique ou à votre mot de passe, faute de quoi le fichier sera inutilisable. 
+        Exporter votre ArisenID vous permet de l'importer sur d'autres appareils. Le fichier exporté sera encrypté donc
+        assurez-vous bien d'avoir accès à votre code mnémonique ou à votre mot de passe, faute de quoi le fichier sera inutilisable.
         Les clés privées de vos comptes seront supprimées pendant l'export, les seules clés privées restantes dans le fichier exporté
         seront les clés relatives à vos Identités.
     `,
 
     [KEYS.IMPORT_Header]:`Importer sauvegarde encryptée`,
     [KEYS.IMPORT_Description]:`
-        L'importation du fichier encrypté contenant votre porte-clés restaurera votre porte-clés Scatter mais vos anciens réseaux ou
+        L'importation du fichier encrypté contenant votre porte-clés restaurera votre porte-clés ArisenID mais vos anciens réseaux ou
         comptes ne seront pas importés.
     `,
 
     [KEYS.PASS_Header]:`Entrez un nouveau mot de passe`,
     [KEYS.PASS_Description]:`
-        Le changement de votre mot de passe provoquera le décryptage de toute votre information, qui reste en temps normal encryptée en 
+        Le changement de votre mot de passe provoquera le décryptage de toute votre information, qui reste en temps normal encryptée en
         permanence, puis son ré-encodage en utilisant la graine aléatoire du nouveau mot de passe.
     `,
 
     [KEYS.NETWORK_Header]:`Ajouter un nouveau réseau`,
     [KEYS.NETWORK_Description]:`
-        Les applications utilisent généralement un réseau spécifique mais il se peut 
+        Les applications utilisent généralement un réseau spécifique mais il se peut
         qu'elles n'utilisent pas toutes le même réseau. Par exemple, une application
         pourrait utiliser un réseau d'essai pour tester certaines fonctions non encore ajoutées.
         Afin d'interagir avec un tel réseau, vous devez vous devriez y avoir un compte.
     `,
 
-    [KEYS.DESTROY_Header]:`Destruction de Scatter`,
+    [KEYS.DESTROY_Header]:`Destruction de ArisenID`,
     [KEYS.DESTROY_Description]:`
-        Vous êtes sur le point de détruire votre porte-clés Scatter en totalité. La seule façon de retrouver votre Scatter
-        en l'état actuel serait d'importer un Scatter JSON exporté. Vous ne serez pas en mesure de revendiquer vos
-        identités autrement. Assurez-vous de bien avoir exporté votre Scatter depuis le panneau de configuration avant
+        Vous êtes sur le point de détruire votre porte-clés ArisenID en totalité. La seule façon de retrouver votre ArisenID
+        en l'état actuel serait d'importer un ArisenID JSON exporté. Vous ne serez pas en mesure de revendiquer vos
+        identités autrement. Assurez-vous de bien avoir exporté votre ArisenID depuis le panneau de configuration avant
         de procéder à sa destruction.
     `,
 
@@ -207,15 +207,15 @@ export default {
         privée et la clé publique associée sera générée automatiquement.
     `,
 
-    [KEYS.KEYPAIR_Important]:`Sauvegardez votre clé privée ailleurs! Vous ne pourrez pas extraire vos clés privées de Scatter.`,
+    [KEYS.KEYPAIR_Important]:`Sauvegardez votre clé privée ailleurs! Vous ne pourrez pas extraire vos clés privées de ArisenID.`,
     [KEYS.KEYPAIR_Validation_Header]:`Générer une nouvelle Paire de Clés`,
     [KEYS.KEYPAIR_Validation_Valid]:`La clé privée est valide et la clé publique associée correspond à la clé publique renseignée.`,
     [KEYS.KEYPAIR_Validation_Invalid]:`La clé publique associée à la clé privée ne correspond pas à la clé publique renseignée !`,
 
     [KEYS.LOCK_Header]:`Minuterie de Verrouillage Automatique`,
     [KEYS.LOCK_Description]:`
-        Le Verrouillage Automatique gère le verrouillage de Scatter pour vous
-        afin que vous ne vous souciez pas de verrouiller votre Scatter lorsque
+        Le Verrouillage Automatique gère le verrouillage de ArisenID pour vous
+        afin que vous ne vous souciez pas de verrouiller votre ArisenID lorsque
         vous vous éloignez de votre appareil.
     `,
 
@@ -230,7 +230,7 @@ export default {
     [KEYS.MNEMONIC_Description]:`Le code mnémonique est un ensemble de mots qui font office de graine aléatoire cryptographique.`,
     [KEYS.MNEMONIC_Note]:`
         Assurez-vous de bien sauvegarder le votre en un endroit sûr. C'est la seule façon de restaurer l'accès
-        à votre Scatter et déchiffrer vos informations privées si vous oubliez votre mot de passe.
+        à votre ArisenID et déchiffrer vos informations privées si vous oubliez votre mot de passe.
     `,
 
     [KEYS.ERROR_MustSelectItem]:`Vous devez sélectionner un élément.`,
@@ -248,7 +248,7 @@ export default {
         'Nom d\'Identité incorrect',
 
         `Votre nom d'Identité doit comporter de 3 à 20 caractères.
-         Il doit contenir uniquement des caractères alphanumériques, des espaces, 
+         Il doit contenir uniquement des caractères alphanumériques, des espaces,
          des tirets (-) et des traits de soulignement (_).`
     ],
     //2
@@ -287,7 +287,7 @@ export default {
 
         `Aucun compte associé à cette clé privée n'a été trouvé.
          Si vous désirez importer une clé qui n'a pas été générée
-         par Scatter, vous devez créer un compte pour la clé avant
+         par ArisenID, vous devez créer un compte pour la clé avant
          de l'importer.`
     ],
     //2
@@ -313,7 +313,7 @@ export default {
         'Hôte Réseau invalide',
 
         `L'Hôte réseau que vous avez saisi est invalide. L'Hôte doit être un
-         nom de domaine ( ex: testnet.eos.io ) ou une adresse IP ( ex: 192.168.0.1 ).`
+         nom de domaine ( ex: greatchain.arisennodes.io ) ou une adresse IP ( ex: 192.168.0.1 ).`
     ],
     //2
     [KEYS.ALERT_NetworkExists]:[
@@ -325,7 +325,7 @@ export default {
     [KEYS.ALERT_RemovingEndorsedNetwork]:[
         'Impossible de Supprimer le Réseau Approuvé',
 
-        `Vous ne pouvez pas supprimer les Réseaux Approuvés par Scatter.`
+        `Vous ne pouvez pas supprimer les Réseaux Approuvés par ArisenID.`
     ],
     //2
     [KEYS.ALERT_NoIdentityWithProperties]:fields => [
@@ -341,8 +341,8 @@ export default {
          devez choisir une Identité afin d'accepter cette requête.`
     ],
     //2
-    [KEYS.PROMPT_DestroyingScatter]:[
-        'Destruction de Scatter',
+    [KEYS.PROMPT_DestroyingArkId]:[
+        'Destruction de ArisenID',
 
         'C\'est votre dernière chance de vérifier vos sauvegardes.'
     ],
@@ -350,7 +350,7 @@ export default {
     [KEYS.PROMPT_RevokingIdentity]:domain => [
         'Révocation d\'Identité',
 
-        `Vous êtes sur le point de révoquer une Identité entière de ${domain}. Cette action supprimera les permissions 
+        `Vous êtes sur le point de révoquer une Identité entière de ${domain}. Cette action supprimera les permissions
          sur l'Identité ainsi que sur tous les contrats associés.`
     ],
     //2
@@ -370,7 +370,7 @@ export default {
     [KEYS.PROMPT_RemovingIdentity]:name => [
         'Suppression d\'Identité ',
 
-        `Vous êtes sur le point de supprimer une Identité avec le nom '${name}'. La suppression est irréversible et 
+        `Vous êtes sur le point de supprimer une Identité avec le nom '${name}'. La suppression est irréversible et
          toutes les permissions seront perdues. Si l'Identité est actuellement utilisée par des applications, il serait
          peut-être préférable de plutôt la désactiver.`
     ],
@@ -420,13 +420,13 @@ export default {
 
     //3
     [KEYS.REQUEST_AddNetwork]:[
-        /*{DOMAIN}*/ 'veut ajouter son réseau à votre Scatter.',
+        /*{DOMAIN}*/ 'veut ajouter son réseau à votre ArisenID.',
 
         'Certaines applications utilisent leur propre Réseau.',
 
-        `Ceci ne donne à l'application aucun accès à votre Scatter.
+        `Ceci ne donne à l'application aucun accès à votre ArisenID.
          Ajouter un réseau depuis cette interface vous évite simplement
-         l'effort de l'ajouter manuellement depuis votre panneau de 
+         l'effort de l'ajouter manuellement depuis votre panneau de
          configuration.`
     ],
     //5
@@ -434,17 +434,17 @@ export default {
         /*{DOMAIN}*/ 'demande des informations supplémentaires.',
 
         `Parfois certaines applications demandent des informations
-         supplémentaires telles que votre e-mail ou votre date de 
+         supplémentaires telles que votre e-mail ou votre date de
          naissance. Les Identités présentes à droite sont celles
-         que vous possédez sur ce Réseau avec les propriétés 
+         que vous possédez sur ce Réseau avec les propriétés
          demandées.`,
 
-        `Même si vous fournissez une Identité possédant des propriétés 
-         pour lesquelles l'application de ne demande pas de permissions, 
+        `Même si vous fournissez une Identité possédant des propriétés
+         pour lesquelles l'application de ne demande pas de permissions,
          ces propriétés ne seront jamais dévoilées voire même l'application
          ne saura pas que de telles propriétés existent pour cette Identité.`,
 
-        `Les seules propriétés qui sont données systématiquement sont la clé publique de 
+        `Les seules propriétés qui sont données systématiquement sont la clé publique de
          l'Identité et son nom.`,
 
         /*{DOMAIN}*/ ` ne demande aucune information supplémentaire. La seule demande est un hash et un nom d'Identité.`
@@ -462,49 +462,39 @@ export default {
 
         `Vous pouvez inscrire cette action sur liste blanche afin de ne plus devoir l'autoriser
          manuellement. Une propriété comportant une coche deviendra muable, ce qui veut dire que
-         vous pouvez autoriser le changement de certaines propriétés de cette transaction et 
+         vous pouvez autoriser le changement de certaines propriétés de cette transaction et
          seulement si les propriétés sans coche changent, l'inscription sur liste blanche échouera.`,
 
         `Ceci comprend les informations personnelles requises et aucun changement effectué sur votre Identité
          ne supprime vos permissions.`,
 
-        `Si vous possédez plusieurs emplacements et qu'une transaction en requiert une, celle-ci vous sera 
+        `Si vous possédez plusieurs emplacements et qu'une transaction en requiert une, celle-ci vous sera
          toujours demandée.`
     ],
     //4
-    [KEYS.REQUEST_ScatterIsLocked]:[
-        `Votre Scatter est verrouillé!`,
+    [KEYS.REQUEST_ArkIdIsLocked]:[
+        `Votre ArisenID est verrouillé!`,
 
         `Avant que vous ne puissiez faire quoi que ce soit, vous devez le déverrouiller.`,
 
         `Nous faisons exprès de ne jamais afficher une fenêtre ou un popup vous demandant de vous identifier.`,
 
         `Si vous voyez une fenêtre ou un popup vous demandant votre mot de passe, c'est un site web malveillant essayant de
-         voler votre mot de passe. Veuillez à toujours déverrouiller Scatter depuis le popup de l'extension en cliquant sur
+         voler votre mot de passe. Veuillez à toujours déverrouiller ArisenID depuis le popup de l'extension en cliquant sur
          l'icône dans la barre de votre navigateur.`
     ],
     //4
     [KEYS.REQUEST_UpdateVersion]:[
-        `Vous n'avez pas la dernière version de Scatter!`,
+        `Vous n'avez pas la dernière version de ArisenID!`,
 
-        /*{DOMAIN}*/ `exige une version plus récente de Scatter.`,
+        /*{DOMAIN}*/ `exige une version plus récente de ArisenID.`,
 
-        `Ceci veut généralement dire que de nouvelles fonctionnalités ont été ajoutées à Scatter et une application 
+        `Ceci veut généralement dire que de nouvelles fonctionnalités ont été ajoutées à ArisenID et une application
          essaie de les utiliser alors qu'elles ne sont pas inclues dans la version installée sur votre appareil.`,
 
-        `Merci de bien vouloir noter que nous laissons le soin aux applications de vérifier la version de Scatter.
+        `Merci de bien vouloir noter que nous laissons le soin aux applications de vérifier la version de ArisenID.
         Celles-ci pourraient essayer de vous faire télécharger un logiciel malveillant. Veuillez à télécharger
-        Scatter depuis une source de confiance.`
+        ArisenID depuis une source de confiance.`
     ],
 
 }
-
-
-
-
-
-
-
-
-
-

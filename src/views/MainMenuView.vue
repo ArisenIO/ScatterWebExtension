@@ -6,7 +6,7 @@
                 <figure class="text">{{link.name}}</figure>
             </router-link>
 
-            <section v-else v-on:click="lockScatter">
+            <section v-else v-on:click="lockArkId">
                 <figure class="icon last"><i class="fa" :class="'fa-'+link.icon"></i></figure>
                 <figure class="text">{{link.name}}</figure>
             </section>
@@ -37,21 +37,21 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ])
         },
         mounted(){
         },
         methods: {
             bind(changed, original) { this[original] = changed },
-            lockScatter(){
+            lockArkId(){
                 this[Actions.LOCK]().then(() => {
                     this.$router.push({name:RouteNames.ENTRY});
                 })
             },
             ...mapActions([
                 Actions.LOCK,
-                Actions.UPDATE_STORED_SCATTER
+                Actions.UPDATE_STORED_ARKID
             ])
         }
     }

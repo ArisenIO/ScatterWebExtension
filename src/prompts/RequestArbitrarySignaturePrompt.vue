@@ -55,7 +55,7 @@
         computed: {
             ...mapState([
                 'prompt',
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
 
@@ -64,7 +64,7 @@
         methods: {
             bind(changed, original) { this[original] = changed },
             keyToName(publicKey){
-                const keypair = this.scatter.keychain.getKeyPairByPublicKey(publicKey);
+                const keypair = this.arkid.keychain.getKeyPairByPublicKey(publicKey);
                 return keypair ? keypair.name : publicKey;
             },
             signers(){

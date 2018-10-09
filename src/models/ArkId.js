@@ -5,7 +5,7 @@ import AES from 'aes-oop';
 import Hasher from '../util/Hasher'
 import IdGenerator from '../util/IdGenerator'
 
-export default class Scatter {
+export default class ArkId {
 
     constructor(){
         this.meta = Meta.placeholder();
@@ -15,7 +15,7 @@ export default class Scatter {
         this.hash = Hasher.insecureHash(IdGenerator.text(2048));
     }
 
-    static placeholder(){ return new Scatter(); }
+    static placeholder(){ return new ArkId(); }
     static fromJson(json){
         let p = Object.assign(this.placeholder(), json);
         if(json.hasOwnProperty('meta')) p.meta = Meta.fromJson(json.meta);
@@ -27,7 +27,7 @@ export default class Scatter {
         return p;
     }
 
-    clone(){ return Scatter.fromJson(JSON.parse(JSON.stringify(this))) }
+    clone(){ return ArkId.fromJson(JSON.parse(JSON.stringify(this))) }
 
     isEncrypted(){
         return typeof this.keychain !== 'object'

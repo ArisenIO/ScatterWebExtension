@@ -1,10 +1,10 @@
 
-export const LOAD_SCATTER = 'loadScatter';
-export const SET_SCATTER = 'setScatter';
+export const LOAD_ARKID = 'loadArkId';
+export const SET_ARKID = 'setArkId';
 export const IS_UNLOCKED = 'isUnlocked';
-export const UPDATE_STORED_SCATTER = 'updateStoredScatter';
-export const CREATE_NEW_SCATTER = 'createNewScatter';
-export const IMPORT_SCATTER = 'importScatter';
+export const UPDATE_STORED_ARKID = 'updateStoredArkId';
+export const CREATE_NEW_ARKID = 'createNewArkId';
+export const IMPORT_ARKID = 'importArkId';
 export const SET_MNEMONIC = 'setMnemonic';
 export const SET_SEED = 'setSeed';
 export const SET_AUTO_LOCK = 'setAutoLock';

@@ -27,7 +27,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
                 'language'
@@ -43,18 +43,18 @@
 
                 this[property] = getLangKey(changed) },
             changeLanguage(){
-                const scatter = this.scatter.clone();
-                scatter.settings.language = this.selectedLanguage.toUpperCase() === this.selectedLanguage
+                const arkid = this.arkid.clone();
+                arkid.settings.language = this.selectedLanguage.toUpperCase() === this.selectedLanguage
                     ? this.selectedLanguage
                     : getLangKey(this.selectedLanguage);
 
-                this[Actions.UPDATE_STORED_SCATTER](scatter).then(() => {
+                this[Actions.UPDATE_STORED_ARKID](arkid).then(() => {
                     this.$router.back();
                 });
             },
             ...mapActions([
                 Actions.PUSH_ALERT,
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
             ])
         }
     }

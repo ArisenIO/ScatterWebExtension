@@ -4,7 +4,7 @@ import * as InternalMessageTypes from './messages/InternalMessageTypes';
 import InternalMessage from './messages/InternalMessage';
 import StorageService from './services/StorageService'
 import SignatureService from './services/SignatureService'
-import Scatter from './models/Scatter'
+import ArkId from './models/ArkId'
 import Network from './models/Network'
 import IdentityService from './services/IdentityService'
 import NotificationService from './services/NotificationService'
@@ -19,7 +19,7 @@ import PluginRepository from './plugins/PluginRepository'
 import {Blockchains, BlockchainsArray} from './models/Blockchains'
 import {apis} from './util/BrowserApis';
 import migrate from './migrations/migrator'
-// Gets bound when a user logs into scatter
+// Gets bound when a user logs into arkid
 // and unbound when they log out
 // Is not on the Background's scope to keep it private
 let seed = '';
@@ -112,64 +112,64 @@ export default class Background {
     }
 
     /***
-     * Checks whether Scatter is locked
+     * Checks whether ArkId is locked
      * @param sendResponse - Delegating response handler
      * @returns {boolean}
      */
     static isUnlocked(sendResponse){
         // Even if a seed is set, that doesn't mean that the seed is correct.
-        if(seed.length) StorageService.get().then(scatter => {
+        if(seed.length) StorageService.get().then(arkid => {
             try {
-                scatter.decrypt(seed);
-                sendResponse(!scatter.isEncrypted());
+                arkid.decrypt(seed);
+                sendResponse(!arkid.isEncrypted());
             } catch(e) {
                 seed = '';
                 sendResponse(false);
             }
         });
-        // If no seed is set, Scatter is definitely locked
+        // If no seed is set, ArkId is definitely locked
         else sendResponse(false);
     }
 
     /***
-     * Returns the saved instance of Scatter from the storage
+     * Returns the saved instance of ArkId from the storage
      * @param sendResponse - Delegating response handler
-     * @returns {Scatter}
+     * @returns {ArkId}
      */
     static load(sendResponse){
-        StorageService.get().then(async scatter => {
+        StorageService.get().then(async arkid => {
             // sync the timeout inactivity interval
-            inactivityInterval = scatter.settings.inactivityInterval;
+            inactivityInterval = arkid.settings.inactivityInterval;
 
-            if(!seed.length) return sendResponse(scatter);
+            if(!seed.length) return sendResponse(arkid);
 
-            scatter.decrypt(seed);
-            const migrated = await migrate(scatter);
-            if(migrated) this.update(() => {}, scatter);
-            sendResponse(scatter)
+            arkid.decrypt(seed);
+            const migrated = await migrate(arkid);
+            if(migrated) this.update(() => {}, arkid);
+            sendResponse(arkid)
         })
     }
 
     /***
-     * Updates the Scatter instance inside persistent storage
+     * Updates the ArkId instance inside persistent storage
      * @param sendResponse - Delegating response handler
-     * @param scatter - The updated cleartext Scatter instance
+     * @param arkid - The updated cleartext ArkId instance
      * @returns {boolean}
      */
-    static update(sendResponse, scatter){
+    static update(sendResponse, arkid){
         this.lockGuard(sendResponse, () => {
-            scatter = Scatter.fromJson(scatter);
+            arkid = ArkId.fromJson(arkid);
 
             // Private Keys are always separately encrypted
-            scatter.keychain.keypairs.map(keypair => keypair.encrypt(seed));
-            scatter.keychain.identities.map(id => id.encrypt(seed));
+            arkid.keychain.keypairs.map(keypair => keypair.encrypt(seed));
+            arkid.keychain.identities.map(id => id.encrypt(seed));
 
             // Keychain is always stored encrypted.
-            scatter.encrypt(seed);
+            arkid.encrypt(seed);
 
-            StorageService.save(scatter).then(saved => {
-                scatter.decrypt(seed);
-                sendResponse(scatter)
+            StorageService.save(arkid).then(saved => {
+                arkid.decrypt(seed);
+                sendResponse(arkid)
             })
         })
     }
@@ -182,17 +182,17 @@ export default class Background {
      */
     static publicToPrivate(sendResponse, publicKey){
         this.lockGuard(sendResponse, () => {
-            StorageService.get().then(scatter => {
-                scatter.decrypt(seed);
-                let keypair = scatter.keychain.keypairs.find(keypair => keypair.publicKey === publicKey);
-                if(!keypair) keypair = scatter.keychain.identities.find(id => id.publicKey === publicKey);
+            StorageService.get().then(arkid => {
+                arkid.decrypt(seed);
+                let keypair = arkid.keychain.keypairs.find(keypair => keypair.publicKey === publicKey);
+                if(!keypair) keypair = arkid.keychain.identities.find(id => id.publicKey === publicKey);
                 sendResponse((keypair) ? AES.decrypt(keypair.privateKey, seed) : null);
             })
         })
     }
 
     /***
-     * Destroys this instance of Scatter
+     * Destroys this instance of ArkId
      * @param sendResponse
      */
     static destroy(sendResponse){
@@ -211,10 +211,10 @@ export default class Background {
      * @param _timeoutMinutes - The timeout minutes to set
      */
     static setTimeout(sendResponse, _timeoutMinutes){
-        this.load(scatter => {
+        this.load(arkid => {
             inactivityInterval = TimingHelpers.minutes(_timeoutMinutes);
-            scatter.settings.inactivityInterval = inactivityInterval;
-            this.update(() => {}, scatter);
+            arkid.settings.inactivityInterval = inactivityInterval;
+            this.update(() => {}, arkid);
         });
 
         sendResponse(true);
@@ -242,14 +242,14 @@ export default class Background {
             return false;
         }
 
-        Background.load(scatter => {
+        Background.load(arkid => {
             const domain = payload.domain;
-            const permission = IdentityService.identityPermission(domain, scatter);
+            const permission = IdentityService.identityPermission(domain, arkid);
             if(!permission){
                 sendResponse(null);
                 return false;
             }
-            const identity = permission.getIdentity(scatter.keychain);
+            const identity = permission.getIdentity(arkid.keychain);
             sendResponse(identity.asOnlyRequiredFields(permission.fields));
         });
     }
@@ -261,10 +261,10 @@ export default class Background {
      */
     static getOrRequestIdentity(sendResponse, payload){
         this.lockGuard(sendResponse, () => {
-            Background.load(scatter => {
+            Background.load(arkid => {
                 const {domain, fields} = payload;
 
-                IdentityService.getOrRequestIdentity(domain, fields, scatter, (identity, fromPermission) => {
+                IdentityService.getOrRequestIdentity(domain, fields, arkid, (identity, fromPermission) => {
                     if(!identity){
                         sendResponse(Error.signatureError("identity_rejected", "User rejected the provision of an Identity"));
                         return false;
@@ -295,14 +295,14 @@ export default class Background {
 
     static forgetIdentity(sendResponse, payload){
         this.lockGuard(sendResponse, () => {
-            Background.load(scatter => {
-                const permission = scatter.keychain.permissions.find(permission => permission.isIdentityOnly() && permission.domain === payload.domain);
+            Background.load(arkid => {
+                const permission = arkid.keychain.permissions.find(permission => permission.isIdentityOnly() && permission.domain === payload.domain);
                 if(!permission){
                     sendResponse(true);
                     return false;
                 }
 
-                const clone = scatter.clone();
+                const clone = arkid.clone();
                 clone.keychain.removePermission(permission);
 
                 this.update(() => {
@@ -320,12 +320,12 @@ export default class Background {
      */
     static authenticate(sendResponse, payload){
         this.lockGuard(sendResponse, () => {
-            Background.load(scatter => {
-                const identity = scatter.keychain.findIdentity(payload.publicKey);
+            Background.load(arkid => {
+                const identity = arkid.keychain.findIdentity(payload.publicKey);
                 if(!identity) return sendResponse(Error.identityMissing());
                 identity.decrypt(seed);
 
-                const plugin = PluginRepository.plugin(Blockchains.EOS);
+                const plugin = PluginRepository.plugin(Blockchains.RSN);
                 plugin.signer(this, {data:payload.domain}, identity.publicKey, sendResponse, true);
             })
         })
@@ -346,8 +346,8 @@ export default class Background {
      */
     static requestSignature(sendResponse, payload){
         this.lockGuard(sendResponse, () => {
-            Background.load(scatter => {
-                SignatureService.requestSignature(payload, scatter, this, sendResponse);
+            Background.load(arkid => {
+                SignatureService.requestSignature(payload, arkid, this, sendResponse);
             })
         })
     }
@@ -359,8 +359,8 @@ export default class Background {
      */
     static requestArbitrarySignature(sendResponse, payload){
         this.lockGuard(sendResponse, () => {
-            Background.load(scatter => {
-                SignatureService.requestArbitrarySignature(payload, scatter, this, sendResponse);
+            Background.load(arkid => {
+                SignatureService.requestArbitrarySignature(payload, arkid, this, sendResponse);
             })
         })
     }
@@ -372,26 +372,26 @@ export default class Background {
      */
     static requestAddNetwork(sendResponse, payload){
         this.lockGuard(sendResponse, () => {
-            Background.load(scatter => {
+            Background.load(arkid => {
 
 
                 const network = Network.fromJson(payload.network);
                 console.log('network', network, BlockchainsArray);
 
                 if(!BlockchainsArray.map(x => x.value).includes(network.blockchain)){
-                    sendResponse(new Error('bad_blockchain', 'The blockchain you specified is not supported by Scatter'));
+                    sendResponse(new Error('bad_blockchain', 'The blockchain you specified is not supported by ArisenID'));
                     return;
                 }
 
                 // Already has network, returning true
-                if(scatter.settings.networks.find(_network => _network.unique() === network.unique())) sendResponse(true);
+                if(arkid.settings.networks.find(_network => _network.unique() === network.unique())) sendResponse(true);
 
                 // Prompting for network addition
                 else NotificationService.open(new Prompt(PromptTypes.REQUEST_ADD_NETWORK, payload.domain, payload.network, network, approved => {
                     if(approved === false || approved.hasOwnProperty('isError')) sendResponse(approved);
                     else {
-                        scatter.settings.networks.unshift(network);
-                        this.update(() => sendResponse(approved), scatter);
+                        arkid.settings.networks.unshift(network);
+                        this.update(() => sendResponse(approved), arkid);
                     }
                 }));
 
@@ -409,7 +409,7 @@ export default class Background {
 
     /***
      * Notifies the user that the application they are using is
-     * requiring a newer version of Scatter than they have installed
+     * requiring a newer version of ArkId than they have installed
      * @param sendResponse
      * @param payload
      */
@@ -427,14 +427,14 @@ export default class Background {
     /********************************************/
 
     /***
-     * Returns a an error if Scatter is locked,
-     * or passes through the callback if Scatter is open
+     * Returns a an error if ArkId is locked,
+     * or passes through the callback if ArkId is open
      * @param sendResponse - Delegating response handler
      * @param cb - Callback to perform if open
      */
     static lockGuard(sendResponse, cb){
         if(!seed.length) {
-            NotificationService.open(Prompt.scatterIsLocked());
+            NotificationService.open(Prompt.arkidIsLocked());
             sendResponse(Error.locked());
         }
         else cb();
@@ -448,9 +448,9 @@ export default class Background {
      * @param data
      */
     static addHistory(type, data){
-        this.load(scatter => {
-            // scatter.histories.unshift(new HistoricEvent(type, data));
-            // this.update(() => {}, scatter);
+        this.load(arkid => {
+            // arkid.histories.unshift(new HistoricEvent(type, data));
+            // this.update(() => {}, arkid);
         })
     }
 
@@ -459,12 +459,12 @@ export default class Background {
      * @param permissions
      */
     static addPermissions(permissions){
-        this.load(scatter => {
+        this.load(arkid => {
             permissions.map(permission => {
-                if(!scatter.keychain.hasPermission(permission.checksum, permission.fields))
-                    scatter.keychain.permissions.unshift(permission);
+                if(!arkid.keychain.hasPermission(permission.checksum, permission.fields))
+                    arkid.keychain.permissions.unshift(permission);
             });
-            this.update(() => {}, scatter);
+            this.update(() => {}, arkid);
         })
     }
 

@@ -32,7 +32,7 @@
         computed: {
             ...mapState([
                 'mnemonic',
-                'scatter'
+                'arkid'
             ])
         },
         methods: {
@@ -41,7 +41,7 @@
             },
             goToFirstIdentity(){
                 this[Actions.SET_MNEMONIC]('');
-                if(!this.scatter.meta.hasOwnProperty('acceptedTerms') || !this.scatter.meta.acceptedTerms)
+                if(!this.arkid.meta.hasOwnProperty('acceptedTerms') || !this.arkid.meta.acceptedTerms)
                     this.$router.push({name:RouteNames.ONBOARDING})
                 else this.$router.push({name:RouteNames.MAIN_MENU});
             },

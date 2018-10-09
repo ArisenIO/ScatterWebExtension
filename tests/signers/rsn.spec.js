@@ -1,5 +1,5 @@
-import Scatter from '../../src/models/Scatter'
-import Scatterdapp from '../../src/scatterdapp'
+import ArkId from '../../src/models/ArkId'
+import ArkIddapp from '../../src/arkiddapp'
 import KeyPair from '../../src/models/KeyPair'
 import Account from '../../src/models/Account'
 import Identity from '../../src/models/Identity'
@@ -10,7 +10,7 @@ import PluginRepository from '../../src/plugins/PluginRepository'
 import {EncryptedStream} from 'extension-streams';
 import {Blockchains} from '../../src/models/Blockchains'
 
-import Eos from 'eosjs';
+import Rsn from 'arisenjs';
 
 import { expect, assert } from 'chai';
 import 'mocha';
@@ -27,7 +27,7 @@ describe('Signature Request', async testDone => {
 
     // Using a pre-generated keypair to evade entropy gathering
     const keypair = KeyPair.fromJson({
-        publicKey:'EOS68fyx6VBXvk4TtEC8GL5GP5qJcod9f7ZcZWBTVSbAYhAwkWkQu',
+        publicKey:'RSN68fyx6VBXvk4TtEC8GL5GP5qJcod9f7ZcZWBTVSbAYhAwkWkQu',
         privateKey:'5KLkgBvMi1Ed9x2xWkiNdZNYZR1DSfJxVqK9fhRtDuKucn1bcUY'
     });
 
@@ -57,16 +57,16 @@ describe('Signature Request', async testDone => {
     identity.setAccount(network, account);
 
 
-    const scatter = new Scatter();
-    scatter.keychain.keypairs.push(keypair);
-    scatter.keychain.identities.push(identity);
+    const arkid = new ArkId();
+    arkid.keychain.keypairs.push(keypair);
+    arkid.keychain.identities.push(identity);
 
-    // TODO: Update to dawn 3 once eosjs is ready
+    // TODO: Update to dawn 3 once arisenjs is ready
     let unsignedTransaction = {
         scope: [account.name, 'inita'],
         messages: [
             {
-                code: 'eos',
+                code: 'rsn',
                 type: 'transfer',
                 authorization: [{
                     account: account.name,
@@ -82,7 +82,7 @@ describe('Signature Request', async testDone => {
         ]
     };
 
-    const eos = Eos({
+    const rsn = Rsn({
         keyProvider: [keypair.privateKey],
         mockTransactions: () => 'pass',
         broadcast: false,
@@ -95,8 +95,8 @@ describe('Signature Request', async testDone => {
 
     it('should be able to set up a transaction to be signed', done => {
 
-        const signProvider = PluginRepository.plugin(Blockchains.EOS).signatureProvider();
-        eos.transfer('inita', 'initb', '10.000 EOS', '', {signProvider}).then(done => {
+        const signProvider = PluginRepository.plugin(Blockchains.RSN).signatureProvider();
+        rsn.transfer('inita', 'initb', '10.000 RSN', '', {signProvider}).then(done => {
 
         });
 

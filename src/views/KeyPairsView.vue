@@ -42,7 +42,7 @@
     import { mapActions, mapGetters, mapState } from 'vuex'
     import * as Actions from '../store/constants';
     import {RouteNames} from '../vue/Routing'
-    import Scatter from '../models/Scatter'
+    import ArkId from '../models/ArkId'
     import AlertMsg from '../models/alerts/AlertMsg'
 
     export default {
@@ -51,7 +51,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
                 'keypairs',
@@ -77,10 +77,10 @@
                 this[Actions.PUSH_ALERT](AlertMsg.DeletingKeyPair(usedInIdentities.map(id => id.name))).then(accepted => {
                     if(!accepted || !accepted.hasOwnProperty('accepted')) return false;
 
-                    const scatter = this.scatter.clone();
+                    const arkid = this.arkid.clone();
                     if(usedInIdentities.length){
                         usedInIdentities.map(_id => {
-                            const id = scatter.keychain.identities.find(x => x.publicKey === _id.publicKey)
+                            const id = arkid.keychain.identities.find(x => x.publicKey === _id.publicKey)
                             // Remove account from identities
                             Object.keys(id.accounts).map(network => {
                                 if(id.accounts[network].publicKey === keypair.publicKey)
@@ -88,15 +88,15 @@
                             });
 
                             // Remove permissions
-                            scatter.keychain.removePermissionsByKeypair(keypair);
+                            arkid.keychain.removePermissionsByKeypair(keypair);
                         });
                     }
-                    scatter.keychain.removeKeyPair(keypair);
-                    this[Actions.UPDATE_STORED_SCATTER](scatter).then(() => {});
+                    arkid.keychain.removeKeyPair(keypair);
+                    this[Actions.UPDATE_STORED_ARKID](arkid).then(() => {});
                 });
             },
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
                 Actions.PUSH_ALERT,
             ])
         }

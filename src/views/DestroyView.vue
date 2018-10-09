@@ -13,7 +13,7 @@
         <section class="panel" v-else>
             <figure class="header">{{locale(langKeys.DESTROY_Header)}}</figure>
             <figure class="sub-header">{{locale(langKeys.DESTROY_Description)}}</figure>
-            <btn v-on:clicked="destroy" :text="locale(langKeys.BUTTON_DestroyScatter)" is-red="true" :margined="true"></btn>
+            <btn v-on:clicked="destroy" :text="locale(langKeys.BUTTON_DestroyArkId)" is-red="true" :margined="true"></btn>
         </section>
 
     </section>
@@ -26,7 +26,7 @@
     import AlertMsg from '../models/alerts/AlertMsg'
     import IdentityService from '../services/IdentityService';
     import Mnemonic from '../util/Mnemonic'
-    import EOSKeygen from '../util/EOSKeygen'
+    import RSNKeygen from '../util/RSNKeygen'
     import StorageService from '../services/StorageService'
     import AuthenticationService from '../services/AuthenticationService'
 
@@ -39,7 +39,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
 
@@ -53,7 +53,7 @@
                 });
             },
             destroy(){
-                this[Actions.PUSH_ALERT](AlertMsg.DestroyingScatter()).then(res => {
+                this[Actions.PUSH_ALERT](AlertMsg.DestroyingArkId()).then(res => {
                     if(!res || !res.hasOwnProperty('accepted')) return false;
 //                    this[Actions.DESTROY]().then(() => this.$router.push({name:RouteNames.ENTRY}));
                     this[Actions.DESTROY]().then(() => window.close());

@@ -51,11 +51,11 @@ export default {
     [KEYS.BUTTON_SetAsDefaultLocation]:'קבע כמיקום ברירת מחדל',
     [KEYS.BUTTON_RemoveLocation]:'הסר מיקום',
     [KEYS.BUTTON_ChangePassword]:'שנה סיסמה',
-    [KEYS.BUTTON_DestroyScatter]:'חסל את סְקַטֵר',
-    [KEYS.BUTTON_CreateNewScatter]:'צור סְקַטֵר חדש',
+    [KEYS.BUTTON_DestroyArkId]:'חסל את סְקַטֵר',
+    [KEYS.BUTTON_CreateNewArkId]:'צור סְקַטֵר חדש',
     [KEYS.BUTTON_LoadFromBackup]:'טען מגיבוי',
     [KEYS.BUTTON_Unlock]:'פתח נעילה',
-    [KEYS.BUTTON_ExportScatter]:'יצא סְקַטֵר',
+    [KEYS.BUTTON_ExportArkId]:'יצא סְקַטֵר',
     [KEYS.BUTTON_GenerateKeyPair]:'צור זוג מפתחות',
     [KEYS.BUTTON_Validate]:'וודא',
     [KEYS.BUTTON_Copy]:'העתק',
@@ -288,7 +288,7 @@ export default {
         'שרת רשת לא תקין',
 
         `שרת הרשת שהזנת לא תקין. שרת צריך להיות כתובת אינטרנט
-         ( למשל: testnet.eos.io ) או כתובת IP ( למשל: 192.168.0.1 ).`
+         ( למשל: greatchain.arisennodes.io ) או כתובת IP ( למשל: 192.168.0.1 ).`
     ],
     //2
     [KEYS.ALERT_NetworkExists]:[
@@ -316,7 +316,7 @@ export default {
          לאשר את הבקשה הזו.`
     ],
     //2
-    [KEYS.PROMPT_DestroyingScatter]:[
+    [KEYS.PROMPT_DestroyingArkId]:[
         'משמיד את סְקַטֵר',
         'זו ההזדמנות האחרונה שלך לוודא שיש לך גיבויים מתאימים.'
     ],
@@ -431,7 +431,7 @@ export default {
     ],
     // סְקַטֵר
     //4
-    [KEYS.REQUEST_ScatterIsLocked]:[
+    [KEYS.REQUEST_ArkIdIsLocked]:[
         `הסְקַטֵר שלך נעול!`,
 
         `לפני שתוכל להשתמש בסְקַטֵר שלך תצטרך לשחרר את הנעילה.`,

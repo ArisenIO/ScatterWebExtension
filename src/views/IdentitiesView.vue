@@ -100,7 +100,7 @@
     import {RouteNames} from '../vue/Routing'
     import Identity from '../models/Identity'
     import Network from '../models/Network'
-    import Scatter from '../models/Scatter'
+    import ArkId from '../models/ArkId'
     import AlertMsg from '../models/alerts/AlertMsg'
     import ObjectHelpers from '../util/ObjectHelpers'
     import AccountService from '../services/AccountService'
@@ -115,7 +115,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
                 'identities',
@@ -151,7 +151,7 @@
                 let network = Network.fromUnique(netString);
 
                 if(!network.host){
-                    const hostedNetwork = this.scatter.settings.networks.find(n => n.chainId === network.chainId && n.host !== '');
+                    const hostedNetwork = this.arkid.settings.networks.find(n => n.chainId === network.chainId && n.host !== '');
                     if(!hostedNetwork) return false;
                     network = hostedNetwork;
                 }
@@ -176,10 +176,10 @@
             removeIdentity(identity){
                 this[Actions.PUSH_ALERT](AlertMsg.RemovingIdentity(identity.name)).then(res => {
                     if(!res || !res.hasOwnProperty('accepted')) return false;
-                    const scatter = this.scatter.clone();
-                    scatter.keychain.identities = scatter.keychain.identities.filter(id => id.publicKey !== identity.publicKey);
-                    scatter.keychain.permissions = scatter.keychain.permissions.filter(perm => perm.identity !== identity.publicKey);
-                    this[Actions.UPDATE_STORED_SCATTER](scatter);
+                    const arkid = this.arkid.clone();
+                    arkid.keychain.identities = arkid.keychain.identities.filter(id => id.publicKey !== identity.publicKey);
+                    arkid.keychain.permissions = arkid.keychain.permissions.filter(perm => perm.identity !== identity.publicKey);
+                    this[Actions.UPDATE_STORED_ARKID](arkid);
                 });
 
             },
@@ -190,12 +190,12 @@
                 this.$router.push({ name:RouteNames.IDENTITY, query: { publicKey: 'create' } })
             },
             networkToName(_network){
-                const network = this.scatter.settings.networks.find(network => network.unique() === _network);
+                const network = this.arkid.settings.networks.find(network => network.unique() === _network);
                 if(!network) return 'Deleted Network';
                 return network.hasOwnProperty('name') && network.name.length ? network.name : network.unique();
             },
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER,
+                Actions.UPDATE_STORED_ARKID,
                 Actions.PUSH_ALERT,
             ])
         },

@@ -6,14 +6,14 @@ import StringHelpers from '../../util/StringHelpers'
 import Error from '../../models/errors/Error'
 import Network from '../../models/Network'
 import Account from '../../models/Account'
-// const ecc = require('eosjs-ecc');
+// const ecc = require('arisenjs-ecc');
 import AlertMsg from '../../models/alerts/AlertMsg'
 import * as Actions from '../../store/constants';
-import Eos from 'eosjs'
-let {ecc, Fcbuffer} = Eos.modules;
+import Rsn from 'arisenjs'
+let {ecc, Fcbuffer} = Rsn.modules;
 import {IdentityRequiredFields} from '../../models/Identity';
 import ObjectHelpers from '../../util/ObjectHelpers'
-import * as ricardianParser from 'eos-rc-parser';
+import * as ricardianParser from 'arisen-rc-parser';
 import StorageService from '../../services/StorageService'
 import {strippedHost} from '../../util/GenericTools'
 
@@ -23,20 +23,20 @@ let throwIfNoIdentity = new WeakMap();
 
 const proxy = (dummy, handler) => new Proxy(dummy, handler);
 
-export default class EOS extends Plugin {
+export default class RSN extends Plugin {
 
-    constructor(){ super(Blockchains.EOS, PluginTypes.BLOCKCHAIN_SUPPORT) }
+    constructor(){ super(Blockchains.RSN, PluginTypes.BLOCKCHAIN_SUPPORT) }
     accountFormatter(account){ return `${account.name}@${account.authority}` }
     returnableAccount(account){ return { name:account.name, authority:account.authority }}
 
     async getEndorsedNetwork(){
         return new Promise((resolve, reject) => {
             resolve(new Network(
-                'EOS Mainnet', 'https',
-                'nodes.get-scatter.com',
+                'Arisen Mainnet', 'https',
+                'greatchain.arisennodes.io',
                 443,
-                Blockchains.EOS,
-                'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+                Blockchains.RSN,
+                'fffa80dc4492fedaa90cbc4ee6f5520568826dfb31ed9c8c161224349f6b82f5'
             ));
         });
     }
@@ -50,11 +50,11 @@ export default class EOS extends Plugin {
     importAccount(keypair, network, context, accountSelected){
         const getAccountsFromPublicKey = (publicKey, network) => {
             return new Promise((resolve, reject) => {
-                const eos = Eos({httpEndpoint:`${network.protocol}://${network.hostport()}`});
-                eos.getKeyAccounts(publicKey).then(res => {
+                const rsn = Rsn({httpEndpoint:`${network.protocol}://${network.hostport()}`});
+                rsn.getKeyAccounts(publicKey).then(res => {
                     if(!res || !res.hasOwnProperty('account_names')){ resolve([]); return false; }
 
-                    Promise.all(res.account_names.map(name => eos.getAccount(name).catch(e => resolve([])))).then(multires => {
+                    Promise.all(res.account_names.map(name => rsn.getAccount(name).catch(e => resolve([])))).then(multires => {
                         let accounts = [];
                         multires.map(account => {
                             account.permissions.map(permission => {
@@ -95,10 +95,10 @@ export default class EOS extends Plugin {
         return ecc.PrivateKey.fromHex(Buffer.from(privateKey, 'hex')).toString();
     }
 
-    async getBalances(account, network, code = 'eosio.token', table = 'accounts'){
-        const eos = Eos({httpEndpoint:`${network.protocol}://${network.hostport()}`, chainId:network.chainId});
-        const contract = await eos.contract(code);
-        return await eos.getTableRows({
+    async getBalances(account, network, code = 'arisen.token', table = 'accounts'){
+        const rsn = Rsn({httpEndpoint:`${network.protocol}://${network.hostport()}`, chainId:network.chainId});
+        const contract = await rsn.contract(code);
+        return await rsn.getTableRows({
             json: true,
             code,
             scope: account.name,
@@ -136,7 +136,7 @@ export default class EOS extends Plugin {
         throwIfNoIdentity = args[1];
 
         // Protocol will be deprecated.
-        return (network, _eos, _options = {}, protocol = 'http') => {
+        return (network, _rsn, _options = {}, protocol = 'http') => {
 
 
             if(!['http', 'https', 'ws'].includes(protocol))
@@ -153,10 +153,10 @@ export default class EOS extends Plugin {
             const chainId = network.hasOwnProperty('chainId') && network.chainId.length ? network.chainId : _options.chainId;
             network.chainId = chainId;
 
-            // The proxy stands between the eosjs object and scatter.
+            // The proxy stands between the arisenjs object and arkid.
             // This is used to add special functionality like adding `requiredFields` arrays to transactions
-            return proxy(_eos({httpEndpoint, chainId}), {
-                get(eosInstance, method) {
+            return proxy(_rsn({httpEndpoint, chainId}), {
+                get(rsnInstance, method) {
 
                     let returnedFields = null;
 
@@ -168,7 +168,7 @@ export default class EOS extends Plugin {
                         requiredFields = IdentityRequiredFields.fromJson(requiredFields ? requiredFields.requiredFields : {});
                         if(!requiredFields.isValid()) throw Error.malformedRequiredFields();
 
-                        // The signature provider which gets elevated into the user's Scatter
+                        // The signature provider which gets elevated into the user's ArkId
                         const signProvider = async signargs => {
                             throwIfNoIdentity();
 
@@ -191,16 +191,16 @@ export default class EOS extends Plugin {
                                     result.signatures.push(multiSigKeyProvider.signProvider(signargs.buf, signargs.sign));
                                 }
 
-                                // Returning only the signatures to eosjs
+                                // Returning only the signatures to arisenjs
                                 return result.signatures;
                             }
 
                             return result;
                         };
 
-                        // TODO: We need to check about the implications of multiple eosjs instances
+                        // TODO: We need to check about the implications of multiple arisenjs instances
                         return new Promise((resolve, reject) => {
-                            _eos(Object.assign(_options, {httpEndpoint, signProvider, chainId}))[method](...args)
+                            _rsn(Object.assign(_options, {httpEndpoint, signProvider, chainId}))[method](...args)
                                 .then(result => {
 
                                     // Standard method ( ie. not contract )
@@ -236,7 +236,7 @@ export default class EOS extends Plugin {
 }
 
 const requestParser = async (signargs, network) => {
-    const eos = Eos({httpEndpoint:network.fullhost(), chainId:network.chainId});
+    const rsn = Rsn({httpEndpoint:network.fullhost(), chainId:network.chainId});
 
     const contracts = signargs.transaction.actions.map(action => action.account)
         .reduce((acc, contract) => {
@@ -253,11 +253,11 @@ const requestParser = async (signargs, network) => {
             new Promise(resolve => setTimeout(() => resolve('no cache'), 500))
         ]);
 
-        if(cachedABI === 'object' && cachedABI.timestamp > +new Date((await eos.getAccount(contractAccount)).last_code_update))
-            abis[contractAccount] = eos.fc.abiCache.abi(contractAccount, cachedABI.abi);
+        if(cachedABI === 'object' && cachedABI.timestamp > +new Date((await rsn.getAccount(contractAccount)).last_code_update))
+            abis[contractAccount] = rsn.fc.abiCache.abi(contractAccount, cachedABI.abi);
 
         else {
-            abis[contractAccount] = (await eos.contract(contractAccount)).fc;
+            abis[contractAccount] = (await rsn.contract(contractAccount)).fc;
             const savableAbi = JSON.parse(JSON.stringify(abis[contractAccount]));
             delete savableAbi.schema;
             delete savableAbi.structs;

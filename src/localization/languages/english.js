@@ -53,11 +53,11 @@ export default {
     [KEYS.BUTTON_SetAsDefaultLocation]:'Set As Default Location',
     [KEYS.BUTTON_RemoveLocation]:'Remove Location',
     [KEYS.BUTTON_ChangePassword]:'Change Password',
-    [KEYS.BUTTON_DestroyScatter]:'Destroy Scatter',
-    [KEYS.BUTTON_CreateNewScatter]:'Create New Scatter',
+    [KEYS.BUTTON_DestroyArkId]:'Destroy ArisenID',
+    [KEYS.BUTTON_CreateNewArkId]:'Create New ArisenID',
     [KEYS.BUTTON_LoadFromBackup]:'Load From Backup',
     [KEYS.BUTTON_Unlock]:'Unlock',
-    [KEYS.BUTTON_ExportScatter]:'Export Scatter',
+    [KEYS.BUTTON_ExportArkId]:'Export ArisenID',
     [KEYS.BUTTON_GenerateKeyPair]:'Generate Key Pair',
     [KEYS.BUTTON_Validate]:'Validate',
     [KEYS.BUTTON_Copy]:'Copy',
@@ -82,7 +82,7 @@ export default {
     [KEYS.IDENTITIES_Header]:`You don't have any Identities yet.`,
     [KEYS.IDENTITIES_Description]:`
         Identities are containers for personal information such as first and last names, addresses and
-        various blockchain accounts/keypairs. Identities also have keypairs and their ownership 
+        various blockchain accounts/keypairs. Identities also have keypairs and their ownership
         can be proven which makes them a way to authenticate with applications without passwords.
     `,
 
@@ -100,29 +100,29 @@ export default {
     `,
     [KEYS.IDENTITY_NoKeyPairsHeader]:`No Key Pairs!`,
     [KEYS.IDENTITY_NoKeyPairsDescription]:`
-        Before you can add blockchain accounts to this Identity you need to add some key pairs. Go to the main menu and select: 
+        Before you can add blockchain accounts to this Identity you need to add some key pairs. Go to the main menu and select:
     `,
     [KEYS.IDENTITY_AccountHeader]:`Account`,
     [KEYS.IDENTITY_AccountDescription]:`
-        Accounts are what hold your funds and allow you to interact with contracts on the Blockchain. 
-        In relation to Identities think of them like the bank accounts connected to your passport, they can 
+        Accounts are what hold your funds and allow you to interact with contracts on the Blockchain.
+        In relation to Identities think of them like the bank accounts connected to your passport, they can
         be changed at any time.
     `,
     [KEYS.IDENTITY_PersonalHeader]:`Personal Information`,
     [KEYS.IDENTITY_PersonalDescription]:`
-        Personal information can be added to an account for applications that require it. For instance a shopping 
+        Personal information can be added to an account for applications that require it. For instance a shopping
         website might need your full name in order to know who to send your purchased goods to.
     `,
     [KEYS.IDENTITY_LocationHeader]:`Location Information`,
     [KEYS.IDENTITY_LocationDescription]:`
-        Location information can be added to an account for applications that require it. 
-        For instance a shopping website might need your shipping address in order to know where to send 
+        Location information can be added to an account for applications that require it.
+        For instance a shopping website might need your shipping address in order to know where to send
         your purchased goods to.
     `,
 
     [KEYS.PERMISSIONS_Header]:`You don't have any permissions to display.`,
     [KEYS.PERMISSIONS_Description]:`
-        Permissions are set when you either provide an Identity for an application to use, or when you whitelist 
+        Permissions are set when you either provide an Identity for an application to use, or when you whitelist
         a contract action to be signed without authorization prompts.
     `,
     [KEYS.PERMISSION_RevokeIdentity]:`Revoke Identity`,
@@ -131,12 +131,12 @@ export default {
 
     [KEYS.HISTORIES_Header]:`You don't have any historic events to display.`,
     [KEYS.HISTORIES_Description]:`
-        Once you have them, you will be able to see a list of all of the events that pass through your Scatter.
-        What you will not see is events that occurred on your accounts outside of scatter.
+        Once you have them, you will be able to see a list of all of the events that pass through your ArisenID.
+        What you will not see is events that occurred on your accounts outside of ArisenID.
      `,
     [KEYS.HISTORIES_Note]:`
-        Note: Exporting your Scatter data from the backup option in the settings panel does not save these events.
-        When you import that Scatter instance again your histories will be empty. If you would like to export your histories
+        Note: Exporting your ArisenID data from the backup option in the settings panel does not save these events.
+        When you import that ArisenID instance again your histories will be empty. If you would like to export your histories
         in the future you can do so using the action buttons on the navbar within this panel.
     `,
 
@@ -150,19 +150,19 @@ export default {
 
     [KEYS.BACKUP_Header]:`Export encrypted backup`,
     [KEYS.BACKUP_Description]:`
-        Exporting your Scatter allows you to import it into other devices. The file will still be encrypted when it is 
-        exported so make sure you have either your mnemonic or your password, otherwise it will be useless. 
+        Exporting your ArisenID allows you to import it into other devices. The file will still be encrypted when it is
+        exported so make sure you have either your mnemonic or your password, otherwise it will be useless.
     `,
 
     [KEYS.IMPORT_Header]:`Import encrypted backup`,
     [KEYS.IMPORT_Description]:`
-        Importing your encrypted keychain file will rebuild you Scatter keychain but it will not import your old networks or 
-        accounts. 
+        Importing your encrypted keychain file will rebuild you ArisenID keychain but it will not import your old networks or
+        accounts.
     `,
 
     [KEYS.PASS_Header]:`Enter a new password`,
     [KEYS.PASS_Description]:`
-        By changing your password you will be decrypting all of the saved information which is usually always 
+        By changing your password you will be decrypting all of the saved information which is usually always
         encrypted, and then re-encrypting it with a seed from the new password.
     `,
 
@@ -174,11 +174,11 @@ export default {
         that network you will need to have an account there as well.
     `,
 
-    [KEYS.DESTROY_Header]:`Destroying Scatter`,
+    [KEYS.DESTROY_Header]:`Destroying ArisenID`,
     [KEYS.DESTROY_Description]:`
-        You are about to destroy your entire Scatter keychain. The only way to get this exact Scatter back is by 
-        importing an exported Scatter JSON. You will not be able to claim your identities otherwise. Make sure you 
-        have exported your Scatter from the backup settings panel before hand.
+        You are about to destroy your entire ArisenID keychain. The only way to get this exact ArisenID back is by
+        importing an exported ArisenID JSON. You will not be able to claim your identities otherwise. Make sure you
+        have exported your ArisenID from the backup settings panel before hand.
     `,
 
     [KEYS.LANGUAGE_Header]:`Select your language`,
@@ -190,10 +190,10 @@ export default {
 
     [KEYS.KEYPAIR_Header]:`Generate a new Key Pair`,
     [KEYS.KEYPAIR_Description]:`
-        You can use this panel to generate key pairs. These key pairs are generated locally on your machine 
+        You can use this panel to generate key pairs. These key pairs are generated locally on your machine
         and are never sent anywhere. You can also paste in a private key and it will automatically generate the public key.
     `,
-    [KEYS.KEYPAIR_Important]:`Save your private key elsewhere! You can not take private keys back out of Scatter.`,
+    [KEYS.KEYPAIR_Important]:`Save your private key elsewhere! You can not take private keys back out of ArisenID.`,
     [KEYS.KEYPAIR_Validation_Header]:`Generate a new Key Pair`,
     [KEYS.KEYPAIR_Validation_Valid]:`The private key is valid and the public key generated from it matches the public key provided.`,
     [KEYS.KEYPAIR_Validation_Invalid]:`The public key generated from the private key did not match the public key provided!`,
@@ -201,8 +201,8 @@ export default {
 
     [KEYS.LOCK_Header]:`Auto Lock Timer`,
     [KEYS.LOCK_Description]:`
-        Auto Lock handles Scatter's locking for you so that you don't have to 
-        remember to lock your Scatter when you step away.
+        Auto Lock handles ArisenID's locking for you so that you don't have to
+        remember to lock your ArisenID when you step away.
     `,
     [KEYS.LOCK_Minute]:`Minute`,
     [KEYS.LOCK_Minutes]:`Minutes`,
@@ -212,10 +212,10 @@ export default {
 
 
     [KEYS.MNEMONIC_Header]:`Mnemonic`,
-    [KEYS.MNEMONIC_Description]:`Mnemonics in Scatter are only used for password recovery.`,
+    [KEYS.MNEMONIC_Description]:`Mnemonics in ArisenID are only used for password recovery.`,
     [KEYS.MNEMONIC_Note]:`
-        Be sure to save yours somewhere safe. It is the only way to regain access to your 
-        Scatter and decrypt your private information if you forget your password.
+        Be sure to save yours somewhere safe. It is the only way to regain access to your
+        ArisenID and decrypt your private information if you forget your password.
     `,
 
     [KEYS.ERROR_MustSelectItem]:`You must select an item.`,
@@ -269,7 +269,7 @@ export default {
     [KEYS.ALERT_NoAccountsFound]:[
         'No Accounts Found',
 
-        `No accounts were found connected to this private/public key. Make sure there is an EOS account linked to this public key on the EOS network.`
+        `No accounts were found connected to this private/public key. Make sure there is an Arisen account linked to this public key on the Arisen network.`
     ],
     //2
     [KEYS.ALERT_PasswordsDoNotMatch]:[
@@ -294,7 +294,7 @@ export default {
         'Network Host Invalid',
 
         `The Network host you entered was invalid. Hosts should be either a domain name
-         ( ex: testnet.eos.io ) or an IP ( ex: 192.168.0.1 ).`
+         ( ex: greatchain.arisennodes.io ) or an IP ( ex: 192.168.0.1 ).`
     ],
     //2
     [KEYS.ALERT_NetworkExists]:[
@@ -306,7 +306,7 @@ export default {
     [KEYS.ALERT_RemovingEndorsedNetwork]:[
         'Cannot Remove Endorsed Network',
 
-        `You cannot remove Scatter's endorsed Networks.`
+        `You cannot remove ArisenID's endorsed Networks.`
     ],
     //2
     [KEYS.ALERT_NoIdentityWithProperties]:fields => [
@@ -322,8 +322,8 @@ export default {
          selected in order to accept this request.`
     ],
     //2
-    [KEYS.PROMPT_DestroyingScatter]:[
-        'Destroying Scatter',
+    [KEYS.PROMPT_DestroyingArkId]:[
+        'Destroying ArisenID',
 
         'This is your last chance to double check your backups.'
     ],
@@ -331,7 +331,7 @@ export default {
     [KEYS.PROMPT_RevokingIdentity]:domain => [
         'Revoking Identity',
 
-        `You are about to revoke an entire Identity from ${domain}. This will remove 
+        `You are about to revoke an entire Identity from ${domain}. This will remove
          permissions on the Identity itself and all contracts within it.`
     ],
     //2
@@ -397,11 +397,11 @@ export default {
 
     //3
     [KEYS.REQUEST_AddNetwork]:[
-        /*{DOMAIN}*/ 'wants to add their network to your Scatter.',
+        /*{DOMAIN}*/ 'wants to add their network to your ArisenID.',
 
         'Some applications use their own Networks.',
 
-        `This in no way gives the application any access to your Scatter. 
+        `This in no way gives the application any access to your ArisenID.
          Adding a network through this interface simply saves you
          the effort of manually adding it from your Settings panel.`
     ],
@@ -442,37 +442,27 @@ export default {
         `If you have multiple locations and a transaction requires a location you will always be prompted.`
     ],
     //4
-    [KEYS.REQUEST_ScatterIsLocked]:[
-        `Your Scatter is locked!`,
+    [KEYS.REQUEST_ArkIdIsLocked]:[
+        `Your ArisenID is locked!`,
 
-        `Before you can do anything with your Scatter you will need to unlock it.`,
+        `Before you can do anything with your ArisenID you will need to unlock it.`,
 
         `We will purposely never show a prompt/popup which requires you to log in.`,
 
         `If you see a prompt/popup which is requesting your password, it is a malicious website trying to get your password.
-         Always only unlock Scatter from the extension's popup by clicking on the icon in your browser tray.`
+         Always only unlock ArisenID from the extension's popup by clicking on the icon in your browser tray.`
     ],
     //4
     [KEYS.REQUEST_UpdateVersion]:[
-        `Your Scatter is out of date!`,
+        `Your ArisenID is out of date!`,
 
-        /*{DOMAIN}*/ `is requiring you have a version of Scatter that is newer than the one installed.`,
+        /*{DOMAIN}*/ `is requiring you have a version of ArisenID that is newer than the one installed.`,
 
         `This usually means that new functionality was released and an application is trying to use it but it's not
          currently included in the build you have installed.`,
 
         `Please Note, we leave version checking up to the applications themselves. They could be maliciously trying to
-         get you to download something. Make sure you always download Scatter from the proper location.`
+         get you to download something. Make sure you always download ArisenID from the proper location.`
     ],
 
 }
-
-
-
-
-
-
-
-
-
-

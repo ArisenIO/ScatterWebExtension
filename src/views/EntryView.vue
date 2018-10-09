@@ -1,11 +1,11 @@
 <template>
     <section>
-        <section v-if="!scatter.settings.hasEncryptionKey">
+        <section v-if="!arkid.settings.hasEncryptionKey">
             <section class="p20">
                 <form v-on:submit.prevent="create">
                   <cin icon="fa-lock" :placeholder="locale(langKeys.PLACEHOLDER_NewPassword)" type="password" v-on:changed="changed => bind(changed, 'password')"></cin>
                   <cin icon="fa-lock" :placeholder="locale(langKeys.PLACEHOLDER_ConfirmPassword)" type="password" v-on:changed="changed => bind(changed, 'passwordConfirmation')"></cin>
-                  <btn :text="locale(langKeys.BUTTON_CreateNewScatter)" type="submit" margined="true"></btn>
+                  <btn :text="locale(langKeys.BUTTON_CreateNewArkId)" type="submit" margined="true"></btn>
                 </form>
             </section>
             <figure class="line"></figure>
@@ -37,12 +37,12 @@
         data(){ return {
             password:'',
             passwordConfirmation:'',
-            scat:this.scatter,
+            scat:this.arkid,
             hiding:true,
         }},
         computed: {
             ...mapState([
-                'scatter',
+                'arkid',
                 'mnemonic'
             ])
         },
@@ -55,13 +55,13 @@
             bind(changed, original) { this[original] = changed },
             create(){
                 if(AuthenticationService.validPassword(this.password, this.passwordConfirmation, this))
-                    this[Actions.CREATE_NEW_SCATTER](this.password).then(() => this.next());
+                    this[Actions.CREATE_NEW_ARKID](this.password).then(() => this.next());
             },
             unlock(){
                 this.hiding = true;
                 setTimeout(() => {
                     AuthenticationService.verifyPassword(this.password, this).then(() => {
-                        this[Actions.LOAD_SCATTER]().then(() => setTimeout(() => this.next(), 100));
+                        this[Actions.LOAD_ARKID]().then(() => setTimeout(() => this.next(), 100));
                     }).catch(() => this.hiding = false);
                 }, 200)
             },
@@ -73,10 +73,10 @@
                 else this.$router.push({name:RouteNames.MAIN_MENU});
             },
             ...mapActions([
-                Actions.CREATE_NEW_SCATTER,
+                Actions.CREATE_NEW_ARKID,
                 Actions.SET_SEED,
                 Actions.IS_UNLOCKED,
-                Actions.LOAD_SCATTER,
+                Actions.LOAD_ARKID,
                 Actions.PUSH_ALERT
             ])
         },

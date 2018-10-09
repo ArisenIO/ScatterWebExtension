@@ -1,5 +1,5 @@
 import * as PluginTypes from './PluginTypes';
-import EOS from './defaults/eos';
+import RSN from './defaults/rsn';
 import ETH from './defaults/eth';
 
 /***
@@ -15,7 +15,7 @@ class PluginRepositorySingleton {
     }
 
     loadPlugins(){
-        this.plugins.push(new EOS());
+        this.plugins.push(new RSN());
         this.plugins.push(new ETH());
     }
 

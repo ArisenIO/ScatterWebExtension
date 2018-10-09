@@ -101,7 +101,7 @@
         }},
         computed: {
             ...mapState([
-                'scatter'
+                'arkid'
             ]),
             ...mapGetters([
                 'histories'
@@ -110,7 +110,7 @@
         methods: {
             bind(changed, original) { this[original] = changed },
             filterBySearch(){ return this.histories.filter(x => JSON.stringify(x).indexOf(this.searchText) > -1) },
-            findIdentity(hash){ return this.scatter.keychain.findIdentity(hash); },
+            findIdentity(hash){ return this.arkid.keychain.findIdentity(hash); },
             typeIcon(type){
                 switch(type){
                     case HistoricEventTypes.SIGNED_TRANSACTION: return 'fa-cubes';
@@ -131,7 +131,7 @@
 
             },
             ...mapActions([
-                Actions.UPDATE_STORED_SCATTER
+                Actions.UPDATE_STORED_ARKID
             ])
         }
     }

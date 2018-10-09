@@ -1,4 +1,4 @@
-const ecc = require('eosjs-ecc');
+const ecc = require('arisenjs-ecc');
 const scrypt = require('scrypt-async');
 import StorageService from '../services/StorageService';
 

@@ -9,7 +9,7 @@ describe('ContractHelpers', () => {
 
     const message = {
         authorization:[{ account:'test', permission:'active' }],
-        code:'eos',
+        code:'rsn',
         type:'transfer',
         data:{
             from:'test',
@@ -22,7 +22,7 @@ describe('ContractHelpers', () => {
     const differentMessages = [
         {
             authorization:[{ account:'inita', permission:'active' }],
-            code:'eos',
+            code:'rsn',
             type:'transfer',
             data:{
                 from:'inita',
@@ -33,7 +33,7 @@ describe('ContractHelpers', () => {
         },
         {
             authorization:[{ account:'test', permission:'active' }],
-            code:'eos',
+            code:'rsn',
             type:'transfer',
             data:{
                 from:'test',
@@ -44,7 +44,7 @@ describe('ContractHelpers', () => {
         },
         {
             authorization:[{ account:'test', permission:'active' }],
-            code:'eos',
+            code:'rsn',
             type:'something_else',
             data:{
                 from:'test',
@@ -55,7 +55,7 @@ describe('ContractHelpers', () => {
         },
         {
             authorization:[{ account:'test', permission:'active' }],
-            code:'eos2',
+            code:'rsn2',
             type:'transfer',
             data:{
                 from:'test',

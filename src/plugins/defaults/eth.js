@@ -25,7 +25,7 @@ let web3;
 
 const proxy = (dummy, handler) => new Proxy(dummy, handler);
 
-class ScatterEthereumWallet {
+class ArkIdEthereumWallet {
     constructor(){
         this.getAccounts = this.getAccounts.bind(this);
         this.signTransaction = this.signTransaction.bind(this);
@@ -139,10 +139,10 @@ export default class ETH extends Plugin {
         })
     }
     convertsTo(){
-        return [Blockchains.EOS];
+        return [Blockchains.RSN];
     }
 
-    async getBalances(account, network, code = 'eosio.token', table = 'accounts'){
+    async getBalances(account, network, code = 'arisen.token', table = 'accounts'){
         // TODO: Add ability to get ETH balances
         return new Promise((r) => {
             r([]);
@@ -185,7 +185,7 @@ export default class ETH extends Plugin {
             const engine = new ProviderEngine();
             web3 = new _web3(engine);
 
-            const walletSubprovider = new HookedWalletSubprovider(new ScatterEthereumWallet());
+            const walletSubprovider = new HookedWalletSubprovider(new ArkIdEthereumWallet());
             engine.addProvider(walletSubprovider);
 
             if(_prefix.indexOf('http') !== -1) engine.addProvider(new RpcSubprovider({rpcUrl}));
